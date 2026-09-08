@@ -775,32 +775,41 @@ body {
   border-radius: 4px; padding: 1px 5px;
   margin-left: 5px; vertical-align: middle;
 }
-/* 済 印章 */
+/* よくできました 印章 */
 .stamp-wrap {
   position: relative; flex-shrink: 0;
-  width: 38px; height: 38px;
+  width: 52px; height: 40px;
   display: flex; align-items: center; justify-content: center;
-}
-.stamp {
-  position: absolute;
-  width: 34px; height: 34px;
-  border: 2.5px solid #c0392b;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  transform: rotate(-14deg) translate(2px, -1px);
-  opacity: .55;
+  overflow: visible;
   pointer-events: none;
 }
-.stamp::after {
-  content: '済';
-  font-family: 'Noto Serif TC', serif;
-  font-size: .75rem; font-weight: 600;
-  color: #c0392b;
-  letter-spacing: -.02em;
+.stamp-img {
+  width: 58px; height: auto;
+  transform: rotate(-8deg) translate(3px, 2px);
+  opacity: .82;
+  filter: var(--stamp-filter);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  /* Slight texture: vary per-render via tiny random rotation in JS */
 }
-/* clip stamp so it feels like partial imprint */
-.stamp-wrap { overflow: visible; }
-.tx-item.recurring-done { opacity: .72; }
+.tx-item.recurring-done { opacity: .78; }
+
+/* Stamp colour per theme — recolour the red (#c81e1e) strokes */
+/* Light themes: keep red-ish but tinted to accent */
+[data-theme="spring"]      { --stamp-filter: hue-rotate(330deg) saturate(1.3) brightness(.88); }
+[data-theme="summer"]      { --stamp-filter: hue-rotate(170deg) saturate(1.4) brightness(.82); }
+[data-theme="autumn"]      { --stamp-filter: hue-rotate(10deg)  saturate(1.2) brightness(.80); }
+[data-theme="winter"]      { --stamp-filter: hue-rotate(190deg) saturate(1.1) brightness(.78); }
+/* Dark themes: invert + tint so stamp is visible on dark bg */
+
+[data-theme="spring-dark"] .stamp-img,
+[data-theme="summer-dark"] .stamp-img,
+[data-theme="autumn-dark"] .stamp-img,
+[data-theme="winter-dark"] .stamp-img { mix-blend-mode: screen; }
+[data-theme="spring-dark"] { --stamp-filter: invert(1) hue-rotate(140deg) saturate(1.8) brightness(1.1); }
+[data-theme="summer-dark"] { --stamp-filter: invert(1) hue-rotate(350deg) saturate(2.2) brightness(1.2); }
+[data-theme="autumn-dark"] { --stamp-filter: invert(1) hue-rotate(30deg)  saturate(1.8) brightness(1.2); }
+[data-theme="winter-dark"] { --stamp-filter: invert(1) hue-rotate(160deg) saturate(1.5) brightness(1.3); }
 .recur-badge {
   font-family: 'Inter', sans-serif;
   font-size: .58rem; color: var(--text-muted);
@@ -1762,7 +1771,10 @@ function renderHome() {
         const cat  = getCat(tx.type, tx.cat);
         const sign = tx.type==='income' ? '+' : '−';
         const iconHtml2 = cat.dataUrl ? `<img src="${cat.dataUrl}" style="width:20px;height:20px;object-fit:cover;border-radius:3px;">` : makeIcon(cat.iconId||'other_e');
-        const stampHtml = tx.recurId ? `<div class="stamp-wrap"><div class="stamp"></div></div>` : '';
+        const tilt = tx.recurId ? (((parseInt(tx.id) % 7) - 3) * 1.5 - 8) : 0;
+        const stampHtml = tx.recurId
+          ? `<div class="stamp-wrap"><img class="stamp-img" src="${STAMP_SRC}" style="transform:rotate(${tilt}deg) translate(3px,2px);" alt="よくできました"></div>`
+          : '';
         return `<div class="tx-item${tx.recurId?' recurring-done':''}" data-id="${tx.id}">
           <div class="tx-icon">${iconHtml2}</div>
           <div class="tx-info">
