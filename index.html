@@ -763,16 +763,44 @@ body {
 
 /* ══ RECURRING items in list ══ */
 .tx-item.recurring-item {
-  border-style: dashed; opacity: .82;
+  border-style: dashed; opacity: .85;
 }
-.tx-item.recurring-item .tx-cat::after {
-  content: ' ↻';
-  font-size: .7rem; color: var(--text-muted); margin-left: 3px;
+/* 待確認標籤 */
+.recur-pending-tag {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-family: 'Inter', sans-serif;
+  font-size: .58rem; letter-spacing: .06em;
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+  border-radius: 4px; padding: 1px 5px;
+  margin-left: 5px; vertical-align: middle;
 }
-.tx-item.recurring-done {
-  opacity: .45;
+/* 済 印章 */
+.stamp-wrap {
+  position: relative; flex-shrink: 0;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
 }
-.tx-item.recurring-done .tx-amount { text-decoration: line-through; }
+.stamp {
+  position: absolute;
+  width: 34px; height: 34px;
+  border: 2.5px solid #c0392b;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transform: rotate(-14deg) translate(2px, -1px);
+  opacity: .55;
+  pointer-events: none;
+}
+.stamp::after {
+  content: '済';
+  font-family: 'Noto Serif TC', serif;
+  font-size: .75rem; font-weight: 600;
+  color: #c0392b;
+  letter-spacing: -.02em;
+}
+/* clip stamp so it feels like partial imprint */
+.stamp-wrap { overflow: visible; }
+.tx-item.recurring-done { opacity: .72; }
 .recur-badge {
   font-family: 'Inter', sans-serif;
   font-size: .58rem; color: var(--text-muted);
@@ -945,6 +973,62 @@ body {
   from { transform: rotate(-1.5deg); }
   to   { transform: rotate(1.5deg); }
 }
+
+/* ══ CALCULATOR ══ */
+.calc-overlay {
+  display: none; position: fixed; inset: 0;
+  z-index: 40; align-items: flex-end; justify-content: center;
+}
+.calc-overlay.open { display: flex; }
+.calc-panel {
+  background: var(--surface);
+  border-radius: 22px 22px 0 0;
+  width: 100%; max-width: 430px;
+  padding: 0 16px calc(env(safe-area-inset-bottom,0px) + 16px);
+  transform: translateY(100%);
+  transition: transform .28s cubic-bezier(.32,0,.2,1);
+  box-shadow: 0 -4px 32px rgba(0,0,0,.18);
+}
+.calc-overlay.open .calc-panel { transform: translateY(0); }
+.calc-handle { width: 32px; height: 3px; background: var(--border); border-radius: 99px; margin: 12px auto 14px; }
+.calc-display {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 10px 14px; margin-bottom: 12px;
+  min-height: 58px; display: flex; flex-direction: column;
+  align-items: flex-end; justify-content: flex-end; gap: 2px;
+}
+.calc-expr {
+  font-family: 'DM Mono', monospace; font-size: .75rem;
+  color: var(--text-muted); min-height: 16px; word-break: break-all;
+  text-align: right;
+}
+.calc-val {
+  font-family: 'DM Mono', monospace; font-size: 1.7rem;
+  font-weight: 300; color: var(--text); letter-spacing: -.02em;
+}
+.calc-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+}
+.calc-btn {
+  padding: 0; height: 56px; border: none; border-radius: 12px;
+  font-family: 'DM Mono', monospace; font-size: 1.1rem;
+  cursor: pointer; transition: opacity .1s, transform .08s;
+  display: flex; align-items: center; justify-content: center;
+}
+.calc-btn:active { opacity: .75; transform: scale(.94); }
+.calc-num  { background: var(--surface2); color: var(--text); font-size: 1.15rem; }
+.calc-op   { background: var(--surface);  color: var(--accent); border: 1px solid var(--border); font-size: 1.2rem; }
+.calc-zero { grid-column: span 2; }
+.calc-eq   { background: var(--accent); color: #fff; font-size: 1.1rem; }
+.calc-del  { background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); }
+.calc-confirm { 
+  width: 100%; margin-top: 10px; padding: 13px;
+  background: var(--accent); color: #fff; border: none;
+  border-radius: 12px; font-family: 'Noto Serif TC', serif;
+  font-size: .9rem; font-weight: 400; letter-spacing: .06em; cursor: pointer;
+  transition: opacity .12s;
+}
+.calc-confirm:active { opacity: .8; }
 
 ::-webkit-scrollbar { width: 0; }
   </style>
@@ -1252,9 +1336,9 @@ body {
 
     <!-- 金額 -->
     <div class="field-label">金額</div>
-    <div class="amount-field">
+    <div class="amount-field" id="amount-field-tap" style="cursor:pointer">
       <span class="currency">NT$</span>
-      <input type="number" id="amount-input" placeholder="0" inputmode="decimal" min="0">
+      <input type="number" id="amount-input" placeholder="0" inputmode="none" min="0" readonly style="cursor:pointer">
     </div>
 
     <!-- 類別 -->
@@ -1346,6 +1430,43 @@ body {
     <div class="detail-date" id="detail-date"></div>
     <div class="detail-note-box" id="detail-note"></div>
     <button class="delete-btn" id="delete-btn">刪除此筆記錄</button>
+  </div>
+</div>
+
+<!-- ═══════════ CALCULATOR ═══════════ -->
+<div class="calc-overlay" id="calc-overlay">
+  <div class="calc-panel">
+    <div class="calc-handle"></div>
+    <div class="calc-display">
+      <div class="calc-expr" id="calc-expr"></div>
+      <div class="calc-val"  id="calc-val">0</div>
+    </div>
+    <div class="calc-grid">
+      <button class="calc-btn calc-op"  data-op="clear">C</button>
+      <button class="calc-btn calc-del" data-op="del">⌫</button>
+      <button class="calc-btn calc-op"  data-op="%">%</button>
+      <button class="calc-btn calc-op"  data-op="÷">÷</button>
+
+      <button class="calc-btn calc-num" data-n="7">7</button>
+      <button class="calc-btn calc-num" data-n="8">8</button>
+      <button class="calc-btn calc-num" data-n="9">9</button>
+      <button class="calc-btn calc-op"  data-op="×">×</button>
+
+      <button class="calc-btn calc-num" data-n="4">4</button>
+      <button class="calc-btn calc-num" data-n="5">5</button>
+      <button class="calc-btn calc-num" data-n="6">6</button>
+      <button class="calc-btn calc-op"  data-op="−">−</button>
+
+      <button class="calc-btn calc-num" data-n="1">1</button>
+      <button class="calc-btn calc-num" data-n="2">2</button>
+      <button class="calc-btn calc-num" data-n="3">3</button>
+      <button class="calc-btn calc-op"  data-op="+">+</button>
+
+      <button class="calc-btn calc-num calc-zero" data-n="0">0</button>
+      <button class="calc-btn calc-num" data-n=".">.</button>
+      <button class="calc-btn calc-eq"  data-op="=">=</button>
+    </div>
+    <button class="calc-confirm" id="calc-confirm">確認金額</button>
   </div>
 </div>
 
@@ -1640,14 +1761,16 @@ function renderHome() {
         const tx   = it.tx;
         const cat  = getCat(tx.type, tx.cat);
         const sign = tx.type==='income' ? '+' : '−';
-        const badge= tx.recurId ? `<span class="recur-badge">↻</span>` : '';
+        const iconHtml2 = cat.dataUrl ? `<img src="${cat.dataUrl}" style="width:20px;height:20px;object-fit:cover;border-radius:3px;">` : makeIcon(cat.iconId||'other_e');
+        const stampHtml = tx.recurId ? `<div class="stamp-wrap"><div class="stamp"></div></div>` : '';
         return `<div class="tx-item${tx.recurId?' recurring-done':''}" data-id="${tx.id}">
-          <div class="tx-icon">${cat.dataUrl ? `<img src="${cat.dataUrl}" style="width:20px;height:20px;object-fit:cover;border-radius:3px;">` : makeIcon(cat.iconId||'other_e')}</div>
+          <div class="tx-icon">${iconHtml2}</div>
           <div class="tx-info">
-            <div class="tx-cat">${cat.name}${badge}</div>
+            <div class="tx-cat">${cat.name}</div>
             ${tx.note ? `<div class="tx-note">${tx.note}</div>` : ''}
           </div>
           <div class="tx-amount ${tx.type}">${sign}${fmt(tx.amount)}</div>
+          ${stampHtml}
         </div>`;
       } else {
         // pending recurring
@@ -1657,7 +1780,7 @@ function renderHome() {
         return `<div class="tx-item recurring-item" data-recur-id="${r.id}" data-recur-date="${date}">
           <div class="tx-icon" style="opacity:.6">${makeIcon(cat.iconId||'other_e')}</div>
           <div class="tx-info">
-            <div class="tx-cat">${cat.name}</div>
+            <div class="tx-cat">${cat.name}<span class="recur-pending-tag">↻ 待確認</span></div>
             <div class="tx-note">${freqLabel(r)}${r.note ? ' · ' + r.note : ''}</div>
           </div>
           <div class="tx-amount ${r.type}" style="opacity:.7">${sign}${fmt(r.amount)}</div>
@@ -2100,6 +2223,110 @@ document.getElementById('cc-submit').addEventListener('click', () => {
   selectedCat = id;
   document.getElementById('custom-cat-overlay').classList.remove('open');
   renderCatGrid();
+});
+
+// ════════════ Calculator ════════════
+let calcExpr = '';   // display expression string
+let calcCurrent = '0';
+let calcJustOp = false;
+let calcResult = null;
+
+function calcUpdateDisplay() {
+  document.getElementById('calc-expr').textContent = calcExpr;
+  document.getElementById('calc-val').textContent  =
+    parseFloat(calcCurrent).toLocaleString('zh-TW', {maximumFractionDigits:4});
+}
+
+function calcEval() {
+  // Replace display operators with JS operators
+  const expr = calcExpr
+    .replace(/×/g,'*').replace(/÷/g,'/')
+    .replace(/−/g,'-').replace(/%/g,'*0.01*prev');
+  try {
+    const result = Function('"use strict";return (' + expr + ')')();
+    if (!isFinite(result)) return;
+    calcResult = Math.round(result * 10000) / 10000;
+    calcCurrent = String(calcResult);
+    calcExpr = String(calcResult);
+  } catch(e) {}
+}
+
+function openCalc() {
+  const cur = document.getElementById('amount-input').value;
+  calcCurrent = cur || '0';
+  calcExpr = cur || '';
+  calcResult = null;
+  calcJustOp = false;
+  calcUpdateDisplay();
+  document.getElementById('calc-overlay').classList.add('open');
+}
+function closeCalc() {
+  document.getElementById('calc-overlay').classList.remove('open');
+}
+
+document.getElementById('amount-field-tap').addEventListener('click', openCalc);
+
+document.querySelectorAll('.calc-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const n  = btn.dataset.n;
+    const op = btn.dataset.op;
+
+    if (n !== undefined) {
+      // digit or dot
+      if (calcJustOp || calcCurrent === '0') {
+        if (n === '.') { calcCurrent = '0.'; }
+        else { calcCurrent = n; }
+        calcJustOp = false;
+      } else {
+        if (n === '.' && calcCurrent.includes('.')) return;
+        calcCurrent += n;
+      }
+      // Append to expression (replace trailing number)
+      const ops = ['+','−','×','÷','%'];
+      const lastOp = Math.max(...ops.map(o => calcExpr.lastIndexOf(o)));
+      if (lastOp >= 0) {
+        calcExpr = calcExpr.slice(0, lastOp+1) + calcCurrent;
+      } else {
+        calcExpr = calcCurrent;
+      }
+      calcUpdateDisplay();
+      return;
+    }
+
+    if (op === 'clear') {
+      calcCurrent = '0'; calcExpr = ''; calcJustOp = false; calcResult = null;
+      calcUpdateDisplay(); return;
+    }
+    if (op === 'del') {
+      if (calcCurrent.length > 1) calcCurrent = calcCurrent.slice(0,-1);
+      else calcCurrent = '0';
+      const ops2 = ['+','−','×','÷','%'];
+      const lastOp2 = Math.max(...ops2.map(o => calcExpr.lastIndexOf(o)));
+      if (lastOp2 >= 0) calcExpr = calcExpr.slice(0, lastOp2+1) + calcCurrent;
+      else calcExpr = calcCurrent === '0' ? '' : calcCurrent;
+      calcUpdateDisplay(); return;
+    }
+    if (op === '=') {
+      if (!calcExpr) return;
+      calcEval();
+      calcUpdateDisplay(); return;
+    }
+    // Operator
+    calcEval();
+    calcExpr += op;
+    calcJustOp = true;
+    calcUpdateDisplay();
+  });
+});
+
+document.getElementById('calc-confirm').addEventListener('click', () => {
+  // Evaluate if there's a pending expression
+  if (calcExpr && !calcJustOp) calcEval();
+  const val = parseFloat(calcCurrent);
+  if (val > 0) {
+    document.getElementById('amount-input').value = Math.round(val * 100) / 100;
+  }
+  closeCalc();
 });
 
 // ════════════ PWA ════════════
