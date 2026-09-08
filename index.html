@@ -1728,27 +1728,23 @@ function renderHome() {
     });
   });
 
-  // Totals: real txs + confirmed recurring (not double-counted, confirmed are already in data)
+  // Totals: confirmed txs only (pending recurring = display only, not calculated)
   const income  = txs.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount, 0);
   const expense = txs.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount, 0);
-  // Also count un-confirmed recurring as "expected" in balance (dimmed)
-  const recurPending = recurEntries.filter(e=>!e.confirmed);
-  const recurIncome  = recurPending.filter(e=>e.r.type==='income').reduce((s,e)=>s+e.r.amount, 0);
-  const recurExpense = recurPending.filter(e=>e.r.type==='expense').reduce((s,e)=>s+e.r.amount, 0);
-  const balance = (income + recurIncome) - (expense + recurExpense);
+  const balance = income - expense;
 
   const balEl = document.getElementById('balance');
   const sign  = balance > 0 ? '+' : balance < 0 ? '−' : '';
   balEl.innerHTML = `<span class="num">${sign}${fmt(balance).replace('NT$','NT$\u200b')}</span>`;
   balEl.className = 'balance-amount ' + (balance > 0 ? 'positive' : balance < 0 ? 'negative' : 'zero');
-  document.getElementById('total-income').textContent  = fmt(income + recurIncome);
-  document.getElementById('total-expense').textContent = fmt(expense + recurExpense);
+  document.getElementById('total-income').textContent  = fmt(income);
+  document.getElementById('total-expense').textContent = fmt(expense);
 
   // Budget
   const budSec = document.getElementById('budget-section');
   if (budget > 0) {
     budSec.style.display = 'block';
-    const totalExp = expense + recurExpense;
+    const totalExp = expense;
     const pct  = Math.min(totalExp / budget, 1);
     const fill = document.getElementById('budget-fill');
     fill.style.width = (pct * 100) + '%';
