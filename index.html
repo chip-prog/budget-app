@@ -19,16 +19,16 @@
    春 / 夏 / 秋 / 冬 × light & dark
 ══════════════════════════════════════════ */
 
-/* 春 — 薄桜 × 若草 (light default) */
+/* 春 — 薄桜 × 若草 (light) */
 [data-theme="spring"] {
   --bg:          #f7f3ee;
   --surface:     #fdfaf6;
   --surface2:    #f0ebe3;
   --border:      #e2d9ce;
   --border-soft: #ede7de;
-  --accent:      #b5787a;   /* 蘇芳 suou */
+  --accent:      #b5787a;
   --accent-dim:  #f0e0e0;
-  --income:      #5a8a6a;   /* 若草 wakakusa */
+  --income:      #5a8a6a;
   --expense:     #b5787a;
   --text:        #2c2420;
   --text-muted:  #9a8880;
@@ -37,170 +37,196 @@
   --header-bg:   #fdfaf6;
   color-scheme: light;
 }
+
+/* 春夜 — 夜桜（よざくら）
+   深墨藍底，桜粉 accent，淡金點綴。
+   想像隅田川夜桜 — 暗夜裡透出的朦朧粉光。 */
 [data-theme="spring-dark"] {
-  --bg:          #1e1816;
-  --surface:     #272120;
-  --surface2:    #322a28;
-  --border:      #3e3230;
-  --border-soft: #352d2b;
-  --accent:      #c9959a;
-  --accent-dim:  #3a2628;
-  --income:      #7aaa8a;
-  --expense:     #c9959a;
-  --text:        #ece5e0;
-  --text-muted:  #8a7a76;
-  --text-light:  #5a4e4a;
-  --nav-bg:      #1e1816;
-  --header-bg:   #1e1816;
+  --bg:          #0e0f18;   /* 夜藍黑，帶靛 */
+  --surface:     #161824;
+  --surface2:    #1e2030;
+  --border:      #2a2c40;
+  --border-soft: #242638;
+  --accent:      #d4899a;   /* 夜桜粉，比日間更飽和 */
+  --accent-dim:  #2a1a20;
+  --income:      #7ab88a;   /* 若葉，月光下的緑 */
+  --expense:     #d4899a;
+  --text:        #f0e8f0;   /* 帶粉的月白 */
+  --text-muted:  #8878a0;   /* 藤色（藤紫）muted */
+  --text-light:  #706888;
+  --nav-bg:      #0e0f18;
+  --header-bg:   #0e0f18;
   color-scheme: dark;
 }
 
-/* 夏 — 瑠璃 × 白藍 */
+/* 夏 — 白藍 × 瑠璃（日間，更清亮對比） */
 [data-theme="summer"] {
-  --bg:          #f0f4f8;
-  --surface:     #f8fbff;
-  --surface2:    #e6edf5;
-  --border:      #cfdae8;
-  --border-soft: #d8e4f0;
-  --accent:      #4a7fa8;   /* 瑠璃 ruri */
-  --accent-dim:  #daeaf5;
-  --income:      #4a8a76;
-  --expense:     #8a5a6a;
-  --text:        #1c2a38;
-  --text-muted:  #7888a0;
-  --text-light:  #aab8cc;
-  --nav-bg:      #f8fbff;
-  --header-bg:   #f8fbff;
+  --bg:          #e8f2fa;   /* 水色底，比之前更藍 */
+  --surface:     #f4faff;
+  --surface2:    #d8eaf6;
+  --border:      #b8d4ea;
+  --border-soft: #c8dcee;
+  --accent:      #2a6898;   /* 濃瑠璃，更深更鮮明 */
+  --accent-dim:  #cce4f5;
+  --income:      #3a8870;   /* 緑青 rokusho */
+  --expense:     #8a4060;   /* 蘇芳紫 */
+  --text:        #101e30;
+  --text-muted:  #5870a0;
+  --text-light:  #98b0cc;
+  --nav-bg:      #f4faff;
+  --header-bg:   #f4faff;
   color-scheme: light;
 }
+
+/* 夏夜 — 花火（はなび）
+   深藍靛底，金赤 accent，玉色點綴。
+   復古祭典感 — 濃靛色夜空炸開的金紅花火。 */
 [data-theme="summer-dark"] {
-  --bg:          #141c24;
-  --surface:     #1c2630;
-  --surface2:    #243040;
-  --border:      #2e3e50;
-  --border-soft: #283848;
-  --accent:      #6a9fcc;
-  --accent-dim:  #1c2e40;
-  --income:      #6aaa96;
-  --expense:     #aa7a8a;
-  --text:        #dce8f4;
-  --text-muted:  #6878a0;
-  --text-light:  #3a4a60;
-  --nav-bg:      #141c24;
-  --header-bg:   #141c24;
+  --bg:          #080c18;   /* 夏夜靛黑 */
+  --surface:     #0e1428;
+  --surface2:    #161e38;
+  --border:      #222a48;
+  --border-soft: #1c2440;
+  --accent:      #e8602a;   /* 金赤 kinaka — 花火紅橙 */
+  --accent-dim:  #2a1008;
+  --income:      #48c8a8;   /* 玉色 tama-iro — 跳色青碧 */
+  --expense:     #e8602a;
+  --text:        #f0e8c8;   /* 和紙白帶黃，復古感 */
+  --text-muted:  #8898c8;   /* 藍白 aijiro */
+  --text-light:  #586090;
+  --nav-bg:      #080c18;
+  --header-bg:   #080c18;
   color-scheme: dark;
 }
 
-/* 秋 — 錆色 × 煤竹 */
-/* 底：深琥珀煙燻，比春暗兩階。accent：錆色（鐵鏽紅棕）。文字染深茶 */
+/* 秋 — 錆色 × 煤竹（日間） */
 [data-theme="autumn"] {
   --bg:          #e8e0d0;
   --surface:     #f2ebe0;
   --surface2:    #d8cebb;
   --border:      #c4b8a0;
   --border-soft: #d0c4ad;
-  --accent:      #8b4513;   /* 錆色 sabiero */
+  --accent:      #8b4513;
   --accent-dim:  #e8d5c4;
-  --income:      #4a7a48;   /* 苔色 */
+  --income:      #4a7a48;
   --expense:     #8b4513;
-  --text:        #1e1608;   /* 墨茶 */
-  --text-muted:  #7a6848;   /* 茶鼠 chanezu */
+  --text:        #1e1608;
+  --text-muted:  #7a6848;
   --text-light:  #b8a888;
   --nav-bg:      #f2ebe0;
   --header-bg:   #f2ebe0;
   color-scheme: light;
 }
+
+/* 秋夜 — 月見（つきみ）
+   極深煤色底，月白 accent，錆金琥珀點綴。
+   想像縁側に坐って望月 — 煤色的夜、銀月、金色的燈。 */
 [data-theme="autumn-dark"] {
-  --bg:          #150f08;   /* 極深煙燻琥珀 */
-  --surface:     #1e1710;
-  --surface2:    #2a2018;
-  --border:      #3a2e20;
-  --border-soft: #302418;
-  --accent:      #c87040;   /* 錆色 亮版 */
-  --accent-dim:  #301808;
-  --income:      #7aaa68;
-  --expense:     #c87040;
-  --text:        #f0e8d4;
-  --text-muted:  #9a7e58;
-  --text-light:  #503c28;
-  --nav-bg:      #150f08;
-  --header-bg:   #150f08;
+  --bg:          #0a0804;   /* 煤黑，極深 */
+  --surface:     #120e08;
+  --surface2:    #1e1810;
+  --border:      #302818;
+  --border-soft: #281e10;
+  --accent:      #e8c870;   /* 月白（帶金） kinjiro */
+  --accent-dim:  #201808;
+  --income:      #80b868;   /* 萌黄 moegi — 月光下的青緑 */
+  --expense:     #c87040;   /* 錆金 — 橙琥珀 */
+  --text:        #f8f0d8;   /* 象牙月白 */
+  --text-muted:  #a09060;   /* 枯草色 kareyuki */
+  --text-light:  #706040;
+  --nav-bg:      #0a0804;
+  --header-bg:   #0a0804;
   color-scheme: dark;
 }
 
-/* 冬 — 銀鼠 × 藍鼠 */
+/* 冬 — 雪白 × 氷藍（日間，更清冽對比） */
 [data-theme="winter"] {
-  --bg:          #eef0f4;
-  --surface:     #f6f8fb;
-  --surface2:    #e4e8ee;
-  --border:      #d0d6e0;
-  --border-soft: #d8dde8;
-  --accent:      #5a6880;   /* 藍鼠 aiiro nezumi */
-  --accent-dim:  #dce2ec;
-  --income:      #5a8878;
-  --expense:     #8a6878;
-  --text:        #1a1e28;
-  --text-muted:  #7a8098;
-  --text-light:  #aab0c0;
-  --nav-bg:      #f6f8fb;
-  --header-bg:   #f6f8fb;
+  --bg:          #e4eaf4;   /* 比之前更冷更深的藍灰 */
+  --surface:     #f0f4fc;
+  --surface2:    #d4dcea;
+  --border:      #b8c4d8;
+  --border-soft: #c8d2e4;
+  --accent:      #304870;   /* 紺色 kon — 深藍，比之前重很多 */
+  --accent-dim:  #ccd4e8;
+  --income:      #3a7870;   /* 深緑青 */
+  --expense:     #784860;   /* 深紅鼠 */
+  --text:        #101828;   /* 深夜藍黑 */
+  --text-muted:  #607090;
+  --text-light:  #9aa8c0;
+  --nav-bg:      #f0f4fc;
+  --header-bg:   #f0f4fc;
   color-scheme: light;
 }
+
+/* 冬夜 — 雪夜（ゆきよ）
+   極深夜藍底，銀白 accent，氷青冷光。
+   雪夜的靜謐 — 深藍黑的夜、雪反射的白光、結冰的青。 */
 [data-theme="winter-dark"] {
-  --bg:          #12141c;
-  --surface:     #1a1e28;
-  --surface2:    #222838;
-  --border:      #2c3448;
-  --border-soft: #262e40;
-  --accent:      #7a90b0;
-  --accent-dim:  #1a2030;
-  --income:      #7aaaa0;
-  --expense:     #aa8898;
-  --text:        #dce0ec;
-  --text-muted:  #6a7090;
-  --text-light:  #3a4058;
-  --nav-bg:      #12141c;
-  --header-bg:   #12141c;
+  --bg:          #060810;   /* 極夜，幾乎純黑帶藍 */
+  --surface:     #0c1020;
+  --surface2:    #141828;
+  --border:      #202438;
+  --border-soft: #1a2030;
+  --accent:      #c0d8f8;   /* 雪白帶冰藍 — 明亮跳色 */
+  --accent-dim:  #101828;
+  --income:      #60c8b8;   /* 氷青 koori — 明亮冰色 */
+  --expense:     #b068a0;   /* 紫苑 shion — 冬の花 */
+  --text:        #e8f0ff;   /* 極冷的藍白 */
+  --text-muted:  #6070a0;   /* 藍鼠 */
+  --text-light:  #485888;
+  --nav-bg:      #060810;
+  --header-bg:   #060810;
   color-scheme: dark;
 }
 
 /* ══ Per-season text tinting ══ */
 
-/* 春 — 文字帶極淡粉灰，標題偏薄桜 */
-[data-theme="spring"] .header h1,
-[data-theme="spring-dark"] .header h1     { color: #8b5a60; }
-[data-theme="spring"] .balance-label,
-[data-theme="spring-dark"] .balance-label { letter-spacing: .14em; }
-[data-theme="spring"] .month-label,
-[data-theme="spring-dark"] .month-label   { color: #a08888; }
+/* 春 日 — 薄桜粉標題 */
+[data-theme="spring"] .header h1      { color: #8b5a60; }
+[data-theme="spring"] .month-label    { color: #a08888; }
+[data-theme="spring"] .balance-label  { letter-spacing: .14em; }
 
-/* 夏 — 標題偏瑠璃，細節帶海色 */
-[data-theme="summer"] .header h1,
-[data-theme="summer-dark"] .header h1     { color: #3a6888; }
-[data-theme="summer"] .month-label,
-[data-theme="summer-dark"] .month-label   { color: #6888a8; }
-[data-theme="summer"] .tx-date-text,
-[data-theme="summer-dark"] .tx-date-text  { color: #5878a0; }
+/* 春夜 — 夜桜：藤紫標題，粉月份 */
+[data-theme="spring-dark"] .header h1     { color: #d4899a; }
+[data-theme="spring-dark"] .month-label   { color: #9888b8; }
+[data-theme="spring-dark"] .tx-date-text  { color: #8878a8; }
+[data-theme="spring-dark"] .balance-label { color: #a090b8; letter-spacing: .12em; }
 
-/* 秋 — 標題用錆色，月份用茶鼠，日期染深棕 */
+/* 夏 日 — 濃瑠璃標題 */
+[data-theme="summer"] .header h1      { color: #1a5080; }
+[data-theme="summer"] .month-label    { color: #3868a0; }
+[data-theme="summer"] .tx-date-text   { color: #3870a8; }
+
+/* 夏夜 — 花火：金赤標題，玉色月份 */
+[data-theme="summer-dark"] .header h1     { color: #e8602a; }
+[data-theme="summer-dark"] .month-label   { color: #48c8a8; }
+[data-theme="summer-dark"] .tx-date-text  { color: #c87840; }
+[data-theme="summer-dark"] .balance-label { color: #a8b0d8; }
+
+/* 秋 日 — 錆色標題 */
 [data-theme="autumn"] .header h1          { color: #6a3010; }
-[data-theme="autumn-dark"] .header h1     { color: #d09060; }
 [data-theme="autumn"] .month-label        { color: #9a6840; }
-[data-theme="autumn-dark"] .month-label   { color: #b07848; }
 [data-theme="autumn"] .tx-date-text       { color: #8a5830; }
-[data-theme="autumn-dark"] .tx-date-text  { color: #c07848; }
 [data-theme="autumn"] .balance-label      { color: #9a7850; letter-spacing: .12em; }
-[data-theme="autumn-dark"] .balance-label { color: #9a7850; }
-[data-theme="autumn"] .list-section-label,
-[data-theme="autumn-dark"] .list-section-label { color: #a07848; }
+[data-theme="autumn"] .list-section-label { color: #a07848; }
 
-/* 冬 — 標題偏藍鼠，冷靜節制 */
-[data-theme="winter"] .header h1,
-[data-theme="winter-dark"] .header h1     { color: #3a4a62; }
-[data-theme="winter"] .month-label,
-[data-theme="winter-dark"] .month-label   { color: #6a7890; }
-[data-theme="winter"] .tx-date-text,
-[data-theme="winter-dark"] .tx-date-text  { color: #6070a0; }
+/* 秋夜 — 月見：月金標題，枯草月份 */
+[data-theme="autumn-dark"] .header h1          { color: #e8c870; }
+[data-theme="autumn-dark"] .month-label        { color: #b09050; }
+[data-theme="autumn-dark"] .tx-date-text       { color: #c0a050; }
+[data-theme="autumn-dark"] .balance-label      { color: #a09060; }
+[data-theme="autumn-dark"] .list-section-label { color: #b09850; }
+
+/* 冬 日 — 紺色標題 */
+[data-theme="winter"] .header h1      { color: #203860; }
+[data-theme="winter"] .month-label    { color: #405880; }
+[data-theme="winter"] .tx-date-text   { color: #405890; }
+
+/* 冬夜 — 雪夜：氷白標題，藍鼠月份 */
+[data-theme="winter-dark"] .header h1     { color: #c0d8f8; }
+[data-theme="winter-dark"] .month-label   { color: #6070a8; }
+[data-theme="winter-dark"] .tx-date-text  { color: #5870a0; }
+[data-theme="winter-dark"] .balance-label { color: #7080b0; }
 
 /* ══ Base ══ */
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -322,7 +348,7 @@ body {
 }
 .tx-list {
   flex: 1; padding: 0 12px;
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 80px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 118px); /* nav + add-bar */
   overflow-y: auto;
 }
 .tx-group { margin-bottom: 22px; }
@@ -352,7 +378,9 @@ body {
 .tx-icon {
   width: 34px; height: 34px; border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; flex-shrink: 0;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
 }
 .tx-info { flex: 1; min-width: 0; }
 .tx-cat {
@@ -386,7 +414,7 @@ body {
   bottom: 0; left: 50%; transform: translateX(-50%);
   width: 100%; max-width: 430px;
   background: var(--nav-bg);
-  border-top: 1px solid var(--border-soft);
+  border-top: 1px solid var(--border);
   display: flex; align-items: flex-end;
   padding-bottom: env(safe-area-inset-bottom, 0px);
   z-index: 15;
@@ -403,26 +431,32 @@ body {
 }
 .nav-btn.active { color: var(--accent); }
 
-/* ＋ 中間按鈕 */
-.nav-add-btn {
-  flex: 1; display: flex; flex-direction: column; align-items: center;
-  justify-content: center; padding: 6px 0 10px;
-  background: none; border: none; cursor: pointer;
-}
-.nav-add-circle {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: var(--accent); color: #fff;
+/* ＋ 長條按鈕 — 浮在導覽列正上方，全寬易按 */
+.add-bar {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 60px);
+  left: 50%; transform: translateX(-50%);
+  width: calc(100% - 32px); max-width: 398px;
+  height: 46px;
+  background: var(--accent);
+  border: none; border-radius: 13px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; line-height: 1;
-  box-shadow: 0 2px 12px color-mix(in srgb, var(--accent) 40%, transparent);
+  cursor: pointer; z-index: 16;
+  box-shadow: 0 3px 16px color-mix(in srgb, var(--accent) 42%, transparent),
+              0 1px 4px rgba(0,0,0,.1);
   transition: transform .1s, opacity .1s;
 }
-.nav-add-btn:active .nav-add-circle { transform: scale(.92); opacity: .85; }
+.add-bar:active { transform: translateX(-50%) scale(.97); opacity: .88; }
+.add-bar-plus {
+  color: #fff; font-size: 1.5rem; line-height: 1;
+  font-weight: 300; font-family: 'Inter', sans-serif;
+  user-select: none; pointer-events: none;
+}
 
 /* ══ STATS ══ */
 .stats-content {
   flex: 1; padding: 16px 12px;
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 72px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 124px);
   overflow-y: auto;
 }
 .chart-card {
@@ -454,7 +488,7 @@ body {
 
 .cat-list { display: flex; flex-direction: column; gap: 11px; }
 .cat-item { display: flex; align-items: center; gap: 10px; }
-.cat-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: .85rem; flex-shrink: 0; }
+.cat-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: color-mix(in srgb, var(--accent) 10%, transparent); }
 .cat-info { flex: 1; min-width: 0; }
 .cat-name {
   font-family: 'Noto Serif TC', serif;
@@ -475,7 +509,7 @@ body {
 /* ══ SETTINGS ══ */
 .settings-content {
   flex: 1; padding: 16px 12px;
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 72px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 124px);
   overflow-y: auto;
 }
 .settings-section { margin-bottom: 22px; }
@@ -513,20 +547,52 @@ body {
 .budget-input-row input:focus { border-color: var(--accent); }
 
 /* 主題選擇器 */
-.theme-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+/* 8 張主題預覽卡 */
+.theme-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
 .theme-btn {
-  display: flex; align-items: center; gap: 10px;
-  background: var(--surface2); border: 1.5px solid transparent;
-  border-radius: 10px; padding: 12px 14px; cursor: pointer;
-  transition: border-color .15s, background .15s;
+  display: flex; flex-direction: column;
+  border: 2px solid transparent; border-radius: 13px;
+  padding: 0; cursor: pointer; overflow: hidden;
+  transition: border-color .18s, transform .1s;
+  background: none;
 }
-.theme-btn.active { border-color: var(--accent); background: var(--surface); }
-.theme-swatch { display: flex; gap: 3px; }
-.theme-swatch span { width: 9px; height: 9px; border-radius: 50%; }
-.theme-name {
+.theme-btn.active { border-color: var(--accent); transform: scale(1.02); }
+.theme-btn:active  { transform: scale(.97); }
+
+/* 卡片本體 — 顏色全 hardcode，不繼承 CSS 變數 */
+.tc {
+  width: 100%; border-radius: 11px; overflow: hidden;
   font-family: 'Noto Serif TC', serif;
-  font-size: .82rem; color: var(--text);
+  box-shadow: 0 1px 6px rgba(0,0,0,.08);
 }
+/* 卡頭：底色 + 標題行 */
+.tc-head {
+  padding: 9px 11px 7px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.tc-season {
+  font-size: .78rem; font-weight: 500; letter-spacing: .06em;
+}
+.tc-mode {
+  font-family: 'Inter', sans-serif;
+  font-size: .55rem; letter-spacing: .06em; opacity: .7;
+}
+/* 色帶：accent / income / expense */
+.tc-band { display: flex; height: 5px; }
+.tc-band span { flex: 1; }
+/* 卡底：surface 色塊 + 文字色示意 */
+.tc-body {
+  padding: 6px 11px 9px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.tc-num {
+  font-family: 'DM Mono', monospace;
+  font-size: .72rem; letter-spacing: -.01em;
+}
+.tc-dots { display: flex; gap: 4px; }
+.tc-dots span { width: 6px; height: 6px; border-radius: 50%; }
 .dark-toggle-row { cursor: pointer; }
 
 /* ══ SHEET OVERLAY ══ */
@@ -605,7 +671,7 @@ body {
   background: var(--surface2); border: 1.5px solid transparent;
   border-radius: 10px; padding: 10px 4px; cursor: pointer; transition: all .12s;
 }
-.cat-btn .icon { font-size: 1.2rem; }
+.cat-btn .icon { width:20px;height:20px;display:flex;align-items:center;justify-content:center;color:var(--accent); }
 .cat-btn .name {
   font-family: 'Noto Serif TC', serif;
   font-size: .6rem; color: var(--text-muted); text-align: center;
@@ -638,6 +704,130 @@ body {
 }
 .submit-btn:active { opacity: .8; }
 
+/* ══ 固定收支 toggle row ══ */
+.recur-toggle-row {
+  display: flex; align-items: center;
+  padding: 14px 0 10px; margin-bottom: 4px;
+  border-top: 1px solid var(--border-soft);
+}
+.recur-toggle-label {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; cursor: pointer; gap: 12px;
+  font-family: 'Noto Serif TC', serif;
+  font-size: .88rem; color: var(--text-muted);
+  user-select: none;
+}
+.recur-toggle-switch input { display: none; }
+.toggle-track {
+  display: inline-flex; align-items: center;
+  width: 40px; height: 24px; background: var(--border);
+  border-radius: 99px; transition: background .2s; flex-shrink: 0;
+  position: relative;
+}
+.toggle-thumb {
+  position: absolute; left: 3px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--surface); box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  transition: transform .2s;
+}
+#recur-check:checked ~ .toggle-track { background: var(--accent); }
+#recur-check:checked ~ .toggle-track .toggle-thumb { transform: translateX(16px); }
+.recur-toggle-label.active { color: var(--accent); }
+
+/* 固定收支展開面板 */
+.recur-panel {
+  overflow: hidden; max-height: 0;
+  transition: max-height .3s ease, opacity .2s;
+  opacity: 0;
+}
+.recur-panel.open { max-height: 500px; opacity: 1; }
+
+/* ══ RECURRING items in list ══ */
+.tx-item.recurring-item {
+  border-style: dashed; opacity: .82;
+}
+.tx-item.recurring-item .tx-cat::after {
+  content: ' ↻';
+  font-size: .7rem; color: var(--text-muted); margin-left: 3px;
+}
+.tx-item.recurring-done {
+  opacity: .45;
+}
+.tx-item.recurring-done .tx-amount { text-decoration: line-through; }
+.recur-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: .58rem; color: var(--text-muted);
+  background: var(--surface2); border: 1px solid var(--border-soft);
+  border-radius: 4px; padding: 1px 5px; margin-left: 5px;
+  vertical-align: middle; white-space: nowrap;
+}
+
+/* ══ RECURRING SHEET extra fields ══ */
+.freq-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 14px;
+}
+.freq-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  background: var(--surface2); border: 1.5px solid transparent;
+  border-radius: 9px; padding: 9px 4px; cursor: pointer; transition: all .12s;
+  font-family: 'Noto Serif TC', serif; font-size: .72rem; color: var(--text-muted);
+}
+.freq-btn.selected { border-color: var(--accent); background: var(--accent-dim); color: var(--text); }
+.freq-icon { font-size: 1rem; }
+
+.weekday-grid {
+  display: flex; gap: 5px; margin-bottom: 14px; flex-wrap: wrap;
+}
+.wd-btn {
+  flex: 1; min-width: 36px; padding: 7px 2px; border: 1.5px solid var(--border);
+  border-radius: 8px; background: var(--surface2); cursor: pointer; transition: all .12s;
+  font-family: 'DM Mono', monospace; font-size: .75rem; color: var(--text-muted); text-align: center;
+}
+.wd-btn.selected { border-color: var(--accent); background: var(--accent-dim); color: var(--text); }
+
+.monthday-row {
+  display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-bottom: 14px;
+}
+.md-btn {
+  padding: 6px 2px; border: 1px solid var(--border-soft); border-radius: 6px;
+  background: var(--surface2); cursor: pointer; transition: all .12s;
+  font-family: 'DM Mono', monospace; font-size: .7rem; color: var(--text-muted); text-align: center;
+}
+.md-btn.selected { border-color: var(--accent); background: var(--accent-dim); color: var(--text); }
+
+.date-range-row { display: flex; gap: 8px; margin-bottom: 14px; }
+.date-range-row .date-field { flex: 1; margin-bottom: 0; font-size: .78rem; }
+.date-range-sep {
+  font-family: 'Inter', sans-serif; font-size: .75rem;
+  color: var(--text-muted); align-self: center; flex-shrink: 0;
+}
+
+.section-collapsed { display: none; }
+.recur-manage-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden; margin-bottom: 10px;
+}
+.recur-manage-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border-bottom: 1px solid var(--border-soft);
+  cursor: pointer;
+}
+.recur-manage-row:last-child { border-bottom: none; }
+.recur-manage-icon { width:20px;height:20px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0; }
+.recur-manage-info { flex: 1; min-width: 0; }
+.recur-manage-name {
+  font-family: 'Noto Serif TC', serif; font-size: .85rem; color: var(--text);
+}
+.recur-manage-desc {
+  font-family: 'DM Mono', monospace; font-size: .68rem; color: var(--text-muted); margin-top: 1px;
+}
+.recur-manage-del {
+  background: none; border: none; color: var(--text-muted);
+  font-size: 1rem; cursor: pointer; padding: 4px 6px; border-radius: 6px;
+  flex-shrink: 0;
+}
+.recur-manage-del:active { color: var(--expense); background: var(--surface2); }
+
 /* ══ DETAIL SHEET ══ */
 .detail-sheet {
   background: var(--surface); border-radius: 22px 22px 0 0;
@@ -650,7 +840,7 @@ body {
 .detail-icon {
   width: 56px; height: 56px; border-radius: 15px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; margin: 0 auto 14px;
+  font-size: 1.5rem; margin: 0 auto 14px; color: var(--accent);
 }
 .detail-cat {
   font-family: 'Noto Serif TC', serif;
@@ -757,37 +947,187 @@ body {
     <div class="settings-section">
       <div class="settings-label">主題</div>
       <div class="theme-grid" id="theme-grid">
-        <button class="theme-btn active" data-theme="spring">
-          <div class="theme-swatch">
-            <span style="background:#f7f3ee"></span>
-            <span style="background:#b5787a"></span>
-            <span style="background:#5a8a6a"></span>
+        <!-- 日間組：data-group="light" -->
+        <button class="theme-btn" data-theme="spring" data-group="light">
+          <div class="tc" style="background:#fdfaf6">
+            <div class="tc-head" style="background:#f7f3ee">
+              <span class="tc-season" style="color:#2c2420">初春</span>
+              <span class="tc-mode" style="color:#9a8880">薄桜 × 若草</span>
+            </div>
+            <div class="tc-band">
+              <span style="background:#b5787a"></span>
+              <span style="background:#5a8a6a"></span>
+              <span style="background:#b5787a"></span>
+            </div>
+            <div class="tc-body" style="background:#fdfaf6">
+              <span class="tc-num" style="color:#b5787a">NT$1,200</span>
+              <div class="tc-dots">
+                <span style="background:#5a8a6a"></span>
+                <span style="background:#b5787a"></span>
+                <span style="background:#b5787a"></span>
+                <span style="background:#9a8880"></span>
+              </div>
+            </div>
           </div>
-          <span class="theme-name">春</span>
         </button>
-        <button class="theme-btn" data-theme="summer">
-          <div class="theme-swatch">
-            <span style="background:#f0f4f8"></span>
-            <span style="background:#4a7fa8"></span>
-            <span style="background:#4a8a76"></span>
+        <button class="theme-btn" data-theme="summer" data-group="light">
+          <div class="tc" style="background:#f4faff">
+            <div class="tc-head" style="background:#e8f2fa">
+              <span class="tc-season" style="color:#101e30">琉璃</span>
+              <span class="tc-mode" style="color:#5870a0">白藍 × 瑠璃</span>
+            </div>
+            <div class="tc-band">
+              <span style="background:#2a6898"></span>
+              <span style="background:#3a8870"></span>
+              <span style="background:#8a4060"></span>
+            </div>
+            <div class="tc-body" style="background:#f4faff">
+              <span class="tc-num" style="color:#2a6898">NT$1,200</span>
+              <div class="tc-dots">
+                <span style="background:#3a8870"></span>
+                <span style="background:#2a6898"></span>
+                <span style="background:#8a4060"></span>
+                <span style="background:#5870a0"></span>
+              </div>
+            </div>
           </div>
-          <span class="theme-name">夏</span>
         </button>
-        <button class="theme-btn" data-theme="autumn">
-          <div class="theme-swatch">
-            <span style="background:#e8e0d0"></span>
-            <span style="background:#8b4513"></span>
-            <span style="background:#4a7a48"></span>
+        <button class="theme-btn" data-theme="autumn" data-group="light">
+          <div class="tc" style="background:#f2ebe0">
+            <div class="tc-head" style="background:#e8e0d0">
+              <span class="tc-season" style="color:#1e1608">山風</span>
+              <span class="tc-mode" style="color:#7a6848">錆色 × 煤竹</span>
+            </div>
+            <div class="tc-band">
+              <span style="background:#8b4513"></span>
+              <span style="background:#4a7a48"></span>
+              <span style="background:#8b4513"></span>
+            </div>
+            <div class="tc-body" style="background:#f2ebe0">
+              <span class="tc-num" style="color:#8b4513">NT$1,200</span>
+              <div class="tc-dots">
+                <span style="background:#4a7a48"></span>
+                <span style="background:#8b4513"></span>
+                <span style="background:#8b4513"></span>
+                <span style="background:#7a6848"></span>
+              </div>
+            </div>
           </div>
-          <span class="theme-name">秋</span>
         </button>
-        <button class="theme-btn" data-theme="winter">
-          <div class="theme-swatch">
-            <span style="background:#eef0f4"></span>
-            <span style="background:#5a6880"></span>
-            <span style="background:#5a8878"></span>
+        <button class="theme-btn" data-theme="winter" data-group="light">
+          <div class="tc" style="background:#f0f4fc">
+            <div class="tc-head" style="background:#e4eaf4">
+              <span class="tc-season" style="color:#101828">師走</span>
+              <span class="tc-mode" style="color:#607090">紺色 × 氷藍</span>
+            </div>
+            <div class="tc-band">
+              <span style="background:#304870"></span>
+              <span style="background:#3a7870"></span>
+              <span style="background:#784860"></span>
+            </div>
+            <div class="tc-body" style="background:#f0f4fc">
+              <span class="tc-num" style="color:#304870">NT$1,200</span>
+              <div class="tc-dots">
+                <span style="background:#3a7870"></span>
+                <span style="background:#304870"></span>
+                <span style="background:#784860"></span>
+                <span style="background:#607090"></span>
+              </div>
+            </div>
           </div>
-          <span class="theme-name">冬</span>
+        </button>
+        <!-- 夜間組：data-group="dark"（hidden when not dark mode） -->
+        <button class="theme-btn" data-theme="spring" data-group="dark">
+          <div class="tc" style="background:#161824">
+            <div class="tc-head" style="background:#0e0f18">
+              <span class="tc-season" style="color:#f0e8f0">夜櫻</span>
+              <span class="tc-mode" style="color:#8878a0">夜桜 × 藤紫</span>
+            </div>
+            <div class="tc-band">
+              <span style="background:#d4899a"></span>
+              <span style="background:#7ab88a"></span>
+              <span style="background:#d4899a"></span>
+            </div>
+            <div class="tc-body" style="background:#161824">
+              <span class="tc-num" style="color:#d4899a">NT$1,200</span>
+              <div class="tc-dots">
+                <span style="background:#7ab88a"></span>
+                <span style="background:#d4899a"></span>
+                <span style="background:#d4899a"></span>
+                <span style="background:#8878a0"></span>
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="theme-btn" data-theme="summer" data-group="dark">
+          <div class="tc" style="background:#0e1428">
+            <div class="tc-head" style="background:#080c18">
+              <span class="tc-season" style="color:#f0e8c8">夏祭</span>
+              <span class="tc-mode" style="color:#8898c8">花火 × 玉色</span>
+            </div>
+            <div class="tc-band">
+              <span style="background:#e8602a"></span>
+              <span style="background:#48c8a8"></span>
+              <span style="background:#e8602a"></span>
+            </div>
+            <div class="tc-body" style="background:#0e1428">
+              <span class="tc-num" style="color:#e8602a">NT$1,200</span>
+              <div class="tc-dots">
+                <span style="background:#48c8a8"></span>
+                <span style="background:#e8602a"></span>
+                <span style="background:#e8602a"></span>
+                <span style="background:#8898c8"></span>
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="theme-btn" data-theme="autumn" data-group="dark">
+          <div class="tc" style="background:#120e08">
+            <div class="tc-head" style="background:#0a0804">
+              <span class="tc-season" style="color:#f8f0d8">月見</span>
+              <span class="tc-mode" style="color:#a09060">月金 × 萌黄</span>
+            </div>
+            <div class="tc-band">
+              <span style="background:#e8c870"></span>
+              <span style="background:#80b868"></span>
+              <span style="background:#c87040"></span>
+            </div>
+            <div class="tc-body" style="background:#120e08">
+              <span class="tc-num" style="color:#e8c870">NT$1,200</span>
+              <div class="tc-dots">
+                <span style="background:#80b868"></span>
+                <span style="background:#e8c870"></span>
+                <span style="background:#c87040"></span>
+                <span style="background:#a09060"></span>
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="theme-btn" data-theme="winter" data-group="dark">
+          <div class="tc" style="background:#0c1020">
+            <div class="tc-head" style="background:#060810">
+              <span class="tc-season" style="color:#e8f0ff">深雪</span>
+              <span class="tc-mode" style="color:#6070a0">氷白 × 紫苑</span>
+            </div>
+            <div class="tc-band">
+              <span style="background:#c0d8f8"></span>
+              <span style="background:#60c8b8"></span>
+              <span style="background:#b068a0"></span>
+            </div>
+            <div class="tc-body" style="background:#0c1020">
+              <span class="tc-num" style="color:#c0d8f8">NT$1,200</span>
+              <div class="tc-dots">
+                <span style="background:#60c8b8"></span>
+                <span style="background:#c0d8f8"></span>
+                <span style="background:#b068a0"></span>
+                <span style="background:#6070a0"></span>
+              </div>
+            </div>
+          </div>
+        </button>
+      </div>
+            </div>
+          </div>
         </button>
       </div>
     </div>
@@ -831,6 +1171,12 @@ body {
     </div>
 
     <div class="settings-section">
+      <div class="settings-label">固定收支管理</div>
+      <div id="recur-manage-list"></div>
+      <div id="recur-empty" style="font-family:'Noto Serif TC',serif;font-size:.82rem;color:var(--text-muted);padding:8px 4px;font-weight:300;display:none">尚無設定固定收支</div>
+    </div>
+
+    <div class="settings-section">
       <div class="settings-label">關於</div>
       <div class="settings-card">
         <div class="settings-row">
@@ -846,14 +1192,16 @@ body {
   </div>
 </div>
 
+<!-- ═══════════ ADD BAR (floating pill above nav) ═══════════ -->
+<button class="add-bar" id="add-bar-btn">
+  <span class="add-bar-plus">＋</span>
+</button>
+
 <!-- ═══════════ BOTTOM NAV ═══════════ -->
 <nav class="bottom-nav">
   <button class="nav-btn active" data-view="home">
     <span class="nav-icon">◫</span>
     <span class="nav-label">明細</span>
-  </button>
-  <button class="nav-add-btn" id="nav-add-btn">
-    <div class="nav-add-circle">＋</div>
   </button>
   <button class="nav-btn" data-view="stats">
     <span class="nav-icon">∿</span>
@@ -865,26 +1213,95 @@ body {
   </button>
 </nav>
 
-<!-- ═══════════ ADD SHEET ═══════════ -->
+<!-- ═══════════ ADD ONE-TIME SHEET (固定 toggle at bottom) ═══════════ -->
 <div class="sheet-overlay" id="add-overlay">
   <div class="sheet">
     <div class="sheet-handle"></div>
     <div class="sheet-title">新增記錄</div>
+
+    <!-- 支出 / 收入 -->
     <div class="type-toggle">
       <button class="type-btn active expense" data-type="expense">支出</button>
       <button class="type-btn income" data-type="income">收入</button>
     </div>
+
+    <!-- 金額 -->
     <div class="field-label">金額</div>
     <div class="amount-field">
       <span class="currency">NT$</span>
       <input type="number" id="amount-input" placeholder="0" inputmode="decimal" min="0">
     </div>
+
+    <!-- 類別 -->
     <div class="field-label" style="margin-bottom:7px">類別</div>
     <div class="cat-grid" id="cat-grid"></div>
+
+    <!-- 日期 -->
     <div class="field-label">日期</div>
     <input type="date" class="date-field" id="date-input">
+
+    <!-- 備註 -->
     <div class="field-label">備註</div>
     <input type="text" class="note-field" id="note-input" placeholder="選填" maxlength="50">
+
+    <!-- ── 固定收支 toggle ── -->
+    <div class="recur-toggle-row" id="recur-toggle-row">
+      <label class="recur-toggle-label">
+        <span>固定收支</span>
+        <span class="recur-toggle-switch">
+          <input type="checkbox" id="recur-check">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </span>
+      </label>
+    </div>
+
+    <!-- 固定收支設定（預設收合） -->
+    <div class="recur-panel" id="recur-panel">
+
+      <div class="field-label" style="margin-bottom:7px">頻率</div>
+      <div class="freq-grid">
+        <button class="freq-btn selected" data-freq="daily">
+          <span class="freq-icon">☀</span>每天
+        </button>
+        <button class="freq-btn" data-freq="weekly">
+          <span class="freq-icon">📅</span>每週
+        </button>
+        <button class="freq-btn" data-freq="monthly">
+          <span class="freq-icon">🗓</span>每月
+        </button>
+
+      </div>
+
+      <!-- 每週：星期 -->
+      <div id="r-weekday-section" class="section-collapsed">
+        <div class="field-label" style="margin-bottom:7px">星期幾（可多選）</div>
+        <div class="weekday-grid" id="r-weekday-grid">
+          <button class="wd-btn" data-wd="0">日</button>
+          <button class="wd-btn" data-wd="1">一</button>
+          <button class="wd-btn" data-wd="2">二</button>
+          <button class="wd-btn" data-wd="3">三</button>
+          <button class="wd-btn" data-wd="4">四</button>
+          <button class="wd-btn" data-wd="5">五</button>
+          <button class="wd-btn" data-wd="6">六</button>
+        </div>
+      </div>
+
+      <!-- 每月：幾號 -->
+      <div id="r-monthday-section" class="section-collapsed">
+        <div class="field-label" style="margin-bottom:7px">每月幾號</div>
+        <div class="monthday-row" id="r-monthday-grid"></div>
+      </div>
+
+      <!-- 日期區間 -->
+      <div class="field-label" style="margin-bottom:7px">日期區間（選填）</div>
+      <div class="date-range-row">
+        <input type="date" class="date-field" id="r-start" placeholder="開始">
+        <span class="date-range-sep">—</span>
+        <input type="date" class="date-field" id="r-end" placeholder="結束（可不填）">
+      </div>
+    </div>
+    <!-- /recur-panel -->
+
     <button class="submit-btn" id="submit-btn">記帳</button>
   </div>
 </div>
@@ -905,36 +1322,74 @@ body {
 <script>
 // ════════════ Data ════════════
 const STORAGE_KEY  = 'budget_app_v1';
+const RECUR_KEY    = 'budget_app_recurring';
 const BUDGET_KEY   = 'budget_app_budget';
 const THEME_KEY    = 'budget_app_theme';
 const DARK_KEY     = 'budget_app_dark';
 
-const CATEGORIES = {
+// SVG icon paths — single-colour, theme-aware (filled with currentColor)
+const CAT_SVGS = {
+  food:      '<path d="M12 2C8 2 5 6 5 10c0 3 1.5 5.5 4 7v3h6v-3c2.5-1.5 4-4 4-7 0-4-3-8-7-8z" fill="currentColor"/>',
+  transport: '<path d="M4 16V8a4 4 0 014-4h8a4 4 0 014 4v8l-2 2H6l-2-2z" fill="currentColor"/><circle cx="7.5" cy="16.5" r="1.5" fill="var(--surface)"/><circle cx="16.5" cy="16.5" r="1.5" fill="var(--surface)"/>',
+  shop:      '<path d="M6 2L3 6v14h18V6l-3-4H6zm3 9a3 3 0 006 0" fill="currentColor"/>',
+  entertain: '<path d="M8 5v14l11-7L8 5z" fill="currentColor"/>',
+  health:    '<path d="M12 21C12 21 4 13.5 4 8.5a5 5 0 0110 0 5 5 0 0110 0C24 13.5 12 21 12 21z" fill="currentColor"/>',
+  home:      '<path d="M3 12L12 3l9 9v9H3V12z" fill="currentColor"/>',
+  edu:       '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>',
+  other_e:   '<circle cx="12" cy="12" r="9" fill="currentColor"/><path d="M12 8v4m0 4h.01" stroke="var(--surface)" stroke-width="2" stroke-linecap="round"/>',
+  salary:    '<rect x="3" y="6" width="18" height="13" rx="2" fill="currentColor"/><path d="M8 6V4a2 2 0 014 0v2" fill="none" stroke="var(--surface)" stroke-width="1.5"/>',
+  freelance: '<rect x="4" y="4" width="16" height="12" rx="2" fill="currentColor"/><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  invest:    '<polyline points="3,18 9,12 13,16 21,7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  gift:      '<rect x="3" y="10" width="18" height="11" rx="1" fill="currentColor"/><path d="M12 10V21M3 15h18M12 10c0-3 3-6 6-3s0 3 0 3H12zm0 0c0-3-3-6-6-3s0 3 0 3h6z" stroke="var(--surface)" stroke-width="1.2" fill="none"/>',
+  other_i:   '<circle cx="12" cy="12" r="9" fill="currentColor"/><path d="M12 8v8M8 12h8" stroke="var(--surface)" stroke-width="2" stroke-linecap="round"/>',
+};
+
+function makeSvg(iconId, size=18) {
+  const path = CAT_SVGS[iconId] || CAT_SVGS['other_e'];
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">${path}</svg>`;
+}
+
+const CUSTOM_CAT_KEY = 'budget_app_custom_cats';
+function loadCustomCats() { try { return JSON.parse(localStorage.getItem(CUSTOM_CAT_KEY)) || {expense:[],income:[]}; } catch { return {expense:[],income:[]}; } }
+function saveCustomCats(c) { localStorage.setItem(CUSTOM_CAT_KEY, JSON.stringify(c)); }
+let customCats = loadCustomCats();
+
+const BASE_CATEGORIES = {
   expense: [
-    { id:'food',      name:'餐飲', icon:'🍜', color:'#c07040' },
-    { id:'transport', name:'交通', icon:'🚌', color:'#4070b0' },
-    { id:'shop',      name:'購物', icon:'🛍️', color:'#a05080' },
-    { id:'entertain', name:'娛樂', icon:'🎮', color:'#7060b0' },
-    { id:'health',    name:'醫療', icon:'💊', color:'#4a9060' },
-    { id:'home',      name:'居家', icon:'🏠', color:'#c0a040' },
-    { id:'edu',       name:'教育', icon:'📚', color:'#4090b0' },
-    { id:'other_e',   name:'其他', icon:'📌', color:'#808080' },
+    { id:'food',      name:'餐飲', svgId:'food' },
+    { id:'transport', name:'交通', svgId:'transport' },
+    { id:'shop',      name:'購物', svgId:'shop' },
+    { id:'entertain', name:'娛樂', svgId:'entertain' },
+    { id:'health',    name:'醫療', svgId:'health' },
+    { id:'home',      name:'居家', svgId:'home' },
+    { id:'edu',       name:'教育', svgId:'edu' },
+    { id:'other_e',   name:'其他', svgId:'other_e' },
   ],
   income: [
-    { id:'salary',    name:'薪資', icon:'💼', color:'#5a9a6a' },
-    { id:'freelance', name:'外快', icon:'💻', color:'#4a8a8a' },
-    { id:'invest',    name:'投資', icon:'📈', color:'#5a8070' },
-    { id:'gift',      name:'紅包', icon:'🧧', color:'#c06070' },
-    { id:'other_i',   name:'其他', icon:'💰', color:'#8a9a60' },
+    { id:'salary',    name:'薪資', svgId:'salary' },
+    { id:'freelance', name:'外快', svgId:'freelance' },
+    { id:'invest',    name:'投資', svgId:'invest' },
+    { id:'gift',      name:'紅包', svgId:'gift' },
+    { id:'other_i',   name:'其他', svgId:'other_i' },
   ]
 };
 
-function loadData()   { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; } }
-function saveData(d)  { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
-function loadBudget() { return parseFloat(localStorage.getItem(BUDGET_KEY)) || 0; }
-function saveBudget(v){ localStorage.setItem(BUDGET_KEY, v); }
+function getAllCats(type) {
+  return [...BASE_CATEGORIES[type], ...(customCats[type]||[])];
+}
+
+// Compatibility: getCat works for both base and custom
+const CATEGORIES = BASE_CATEGORIES; // keep for stats compat
+
+function loadData()    { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; } }
+function saveData(d)   { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+function loadRecur()   { try { return JSON.parse(localStorage.getItem(RECUR_KEY)) || []; } catch { return []; } }
+function saveRecur(r)  { localStorage.setItem(RECUR_KEY, JSON.stringify(r)); }
+function loadBudget()  { return parseFloat(localStorage.getItem(BUDGET_KEY)) || 0; }
+function saveBudget(v) { localStorage.setItem(BUDGET_KEY, v); }
 
 let data   = loadData();
+let recurs = loadRecur();   // [{id,type,cat,amount,freq,weekdays,monthday,start,end,note}]
 let budget = loadBudget();
 
 // ════════════ Theme ════════════
@@ -946,12 +1401,13 @@ function applyTheme() {
   const t = isDark ? currentTheme + '-dark' : currentTheme;
   document.body.dataset.theme = t;
   document.getElementById('dark-label').textContent = isDark ? '開' : '關';
-  // update theme-color meta for iOS status bar
   const surface = getComputedStyle(document.body).getPropertyValue('--header-bg').trim();
   document.getElementById('theme-color-meta').content = surface || '#f7f3ee';
-  // theme buttons
+  // show only the relevant group; highlight active season
   document.querySelectorAll('.theme-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.theme === currentTheme);
+    const isMyGroup = b.dataset.group === (isDark ? 'dark' : 'light');
+    b.style.display = isMyGroup ? '' : 'none';
+    b.classList.toggle('active', isMyGroup && b.dataset.theme === currentTheme);
   });
   localStorage.setItem(THEME_KEY, currentTheme);
   localStorage.setItem(DARK_KEY, isDark ? '1' : '0');
@@ -959,7 +1415,11 @@ function applyTheme() {
 applyTheme();
 
 document.querySelectorAll('.theme-btn').forEach(btn => {
-  btn.addEventListener('click', () => { currentTheme = btn.dataset.theme; applyTheme(); });
+  btn.addEventListener('click', () => {
+    currentTheme = btn.dataset.theme;
+    isDark = btn.dataset.group === 'dark';
+    applyTheme();
+  });
 });
 document.getElementById('dark-toggle').addEventListener('click', () => { isDark = !isDark; applyTheme(); });
 
@@ -977,7 +1437,7 @@ function fmt(n) {
 }
 function monthKey(y,m) { return `${y}-${String(m+1).padStart(2,'0')}`; }
 function getMonthTx(y,m) { return data.filter(tx => tx.date.startsWith(monthKey(y,m))); }
-function getCat(type,id) { return CATEGORIES[type].find(c=>c.id===id) || { name:id, icon:'📌', color:'#808080' }; }
+function getCat(type,id) { return getAllCats(type).find(c=>c.id===id) || { name:id, svgId:'other_e', color:'#808080' }; }
 function formatDate(s) {
   const d = new Date(s + 'T00:00:00');
   return `${d.getMonth()+1}月${d.getDate()}日　${'日一二三四五六'[d.getDay()]}`;
@@ -988,61 +1448,153 @@ function groupByDate(txs) {
   return Object.entries(g).sort((a,b) => b[0].localeCompare(a[0]));
 }
 
+// ════════════ Recurring helpers ════════════
+// Return all dates in a given year/month that a recur rule fires
+function recurDatesInMonth(r, year, month) {
+  const results = [];
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const startBound = r.start ? new Date(r.start + 'T00:00:00') : null;
+  const endBound   = r.end   ? new Date(r.end   + 'T00:00:00') : null;
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(year, month, d);
+    if (startBound && date < startBound) continue;
+    if (endBound   && date > endBound)   continue;
+
+    let fires = false;
+    if (r.freq === 'daily') {
+      fires = true;
+    } else if (r.freq === 'weekly') {
+      fires = (r.weekdays || []).includes(date.getDay());
+    } else if (r.freq === 'monthly') {
+      fires = (r.monthday === d);
+    }
+    if (fires) results.push(`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`);
+  }
+  return results;
+}
+
+function freqLabel(r) {
+  if (r.freq === 'daily')   return '每天';
+  if (r.freq === 'monthly') return `每月${r.monthday}號`;
+  const wdNames = '日一二三四五六';
+  if (r.freq === 'weekly') {
+    const days = (r.weekdays||[]).map(w=>wdNames[w]).join('、');
+    return `每週${days}`;
+  }
+  return '';
+}
+
 // ════════════ Render Home ════════════
 function renderHome() {
   const {year, month} = viewMonth;
   document.getElementById('month-label').textContent = `${year}.${String(month+1).padStart(2,'0')}`;
 
-  const txs     = getMonthTx(year, month);
+  const txs = getMonthTx(year, month);
+
+  // Build recurring virtual entries for this month
+  const recurEntries = []; // {date, r, fired:bool}
+  recurs.forEach(r => {
+    const dates = recurDatesInMonth(r, year, month);
+    dates.forEach(date => {
+      // Check if already manually confirmed (stored as real tx with recurId)
+      const confirmed = data.find(t => t.recurId === r.id && t.date === date);
+      recurEntries.push({ date, r, confirmed: !!confirmed });
+    });
+  });
+
+  // Totals: real txs + confirmed recurring (not double-counted, confirmed are already in data)
   const income  = txs.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount, 0);
   const expense = txs.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount, 0);
-  const balance = income - expense;
+  // Also count un-confirmed recurring as "expected" in balance (dimmed)
+  const recurPending = recurEntries.filter(e=>!e.confirmed);
+  const recurIncome  = recurPending.filter(e=>e.r.type==='income').reduce((s,e)=>s+e.r.amount, 0);
+  const recurExpense = recurPending.filter(e=>e.r.type==='expense').reduce((s,e)=>s+e.r.amount, 0);
+  const balance = (income + recurIncome) - (expense + recurExpense);
 
   const balEl = document.getElementById('balance');
   const sign  = balance > 0 ? '+' : balance < 0 ? '−' : '';
   balEl.innerHTML = `<span class="num">${sign}${fmt(balance).replace('NT$','NT$\u200b')}</span>`;
   balEl.className = 'balance-amount ' + (balance > 0 ? 'positive' : balance < 0 ? 'negative' : 'zero');
-
-  document.getElementById('total-income').textContent  = fmt(income);
-  document.getElementById('total-expense').textContent = fmt(expense);
+  document.getElementById('total-income').textContent  = fmt(income + recurIncome);
+  document.getElementById('total-expense').textContent = fmt(expense + recurExpense);
 
   // Budget
   const budSec = document.getElementById('budget-section');
   if (budget > 0) {
     budSec.style.display = 'block';
-    const pct  = Math.min(expense / budget, 1);
+    const totalExp = expense + recurExpense;
+    const pct  = Math.min(totalExp / budget, 1);
     const fill = document.getElementById('budget-fill');
     fill.style.width = (pct * 100) + '%';
     fill.className   = 'budget-fill' + (pct >= 1 ? ' danger' : pct >= .8 ? ' warning' : '');
-    document.getElementById('budget-text').innerHTML = `<em>${fmt(expense)}</em> / ${fmt(budget)}`;
+    document.getElementById('budget-text').innerHTML = `<em>${fmt(totalExp)}</em> / ${fmt(budget)}`;
   } else {
     budSec.style.display = 'none';
   }
 
-  // List
+  // Merge real txs + recurring entries into date groups
   const listEl = document.getElementById('tx-list');
-  const groups = groupByDate(txs);
+  const allByDate = {};
+  txs.filter(t => !t.recurId).forEach(t => {  // real one-time txs
+    (allByDate[t.date] = allByDate[t.date] || []).push({ kind:'tx', tx: t });
+  });
+  recurEntries.forEach(e => {  // recurring (pending or confirmed)
+    if (!e.confirmed)
+      (allByDate[e.date] = allByDate[e.date] || []).push({ kind:'recur', e });
+    // confirmed ones already appear via real txs with recurId
+  });
+  txs.filter(t => t.recurId).forEach(t => {  // confirmed recurring
+    (allByDate[t.date] = allByDate[t.date] || []).push({ kind:'tx', tx: t, isRecurConfirmed: true });
+  });
+
+  const groups = Object.entries(allByDate).sort((a,b) => b[0].localeCompare(a[0]));
+
   if (!groups.length) {
     listEl.innerHTML = `<div class="empty-state">
       <div class="e-icon">⌘</div>
       <p>本月尚無記錄<br>點下方 ＋ 開始記帳</p>
     </div>`; return;
   }
+
   listEl.innerHTML = groups.map(([date, items]) => {
-    const daySum = items.reduce((s,t) => s + (t.type==='expense' ? -t.amount : t.amount), 0);
+    const daySum = items.reduce((s,it) => {
+      const amt = it.kind==='tx' ? it.tx.amount : it.e.r.amount;
+      const typ = it.kind==='tx' ? it.tx.type   : it.e.r.type;
+      return s + (typ==='expense' ? -amt : amt);
+    }, 0);
     const sumStr = (daySum > 0 ? '+' : daySum < 0 ? '−' : '') + fmt(Math.abs(daySum));
-    const rows   = items.map(tx => {
-      const cat  = getCat(tx.type, tx.cat);
-      const sign = tx.type === 'income' ? '+' : '−';
-      return `<div class="tx-item" data-id="${tx.id}">
-        <div class="tx-icon" style="background:${cat.color}18">${cat.icon}</div>
-        <div class="tx-info">
-          <div class="tx-cat">${cat.name}</div>
-          ${tx.note ? `<div class="tx-note">${tx.note}</div>` : ''}
-        </div>
-        <div class="tx-amount ${tx.type}">${sign}${fmt(tx.amount)}</div>
-      </div>`;
+
+    const rows = items.map(it => {
+      if (it.kind === 'tx') {
+        const tx   = it.tx;
+        const cat  = getCat(tx.type, tx.cat);
+        const sign = tx.type==='income' ? '+' : '−';
+        const badge= tx.recurId ? `<span class="recur-badge">↻</span>` : '';
+        return `<div class="tx-item${tx.recurId?' recurring-done':''}" data-id="${tx.id}">
+          <div class="tx-icon">${makeSvg(cat.svgId||'other_e')}</div>
+          <div class="tx-info">
+            <div class="tx-cat">${cat.name}${badge}</div>
+            ${tx.note ? `<div class="tx-note">${tx.note}</div>` : ''}
+          </div>
+          <div class="tx-amount ${tx.type}">${sign}${fmt(tx.amount)}</div>
+        </div>`;
+      } else {
+        // pending recurring
+        const r   = it.e.r;
+        const cat = getCat(r.type, r.cat);
+        const sign= r.type==='income' ? '+' : '−';
+        return `<div class="tx-item recurring-item" data-recur-id="${r.id}" data-recur-date="${date}">
+          <div class="tx-icon" style="opacity:.6">${makeSvg(cat.svgId||'other_e')}</div>
+          <div class="tx-info">
+            <div class="tx-cat">${cat.name}</div>
+            <div class="tx-note">${freqLabel(r)}${r.note ? ' · ' + r.note : ''}</div>
+          </div>
+          <div class="tx-amount ${r.type}" style="opacity:.7">${sign}${fmt(r.amount)}</div>
+        </div>`;
+      }
     }).join('');
+
     return `<div class="tx-group">
       <div class="tx-date-row">
         <span class="tx-date-text">${formatDate(date)}</span>
@@ -1053,8 +1605,13 @@ function renderHome() {
     </div>`;
   }).join('');
 
-  listEl.querySelectorAll('.tx-item').forEach(el =>
+  // Real tx clicks → detail
+  listEl.querySelectorAll('.tx-item[data-id]').forEach(el =>
     el.addEventListener('click', () => openDetail(el.dataset.id))
+  );
+  // Recurring pending clicks → confirm or skip
+  listEl.querySelectorAll('.tx-item[data-recur-id]').forEach(el =>
+    el.addEventListener('click', () => confirmRecurring(el.dataset.recurId, el.dataset.recurDate))
   );
 }
 
@@ -1098,7 +1655,7 @@ function renderStats() {
         const cat = getCat('expense', id);
         const pct = expense > 0 ? Math.round(amt/expense*100) : 0;
         return `<div class="cat-item">
-          <div class="cat-icon" style="background:${cat.color}18">${cat.icon}</div>
+          <div class="cat-icon" style="color:var(--accent)">${makeSvg(cat.svgId||'other_e',18)}</div>
           <div class="cat-info">
             <div class="cat-name">${cat.name}<span class="cat-pct">${pct}%</span></div>
             <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%;background:${cat.color}"></div></div>
@@ -1122,59 +1679,178 @@ function renderStats() {
     </div>`;
 }
 
-// ════════════ Add Sheet ════════════
+// ════════════ Add bar → open sheet directly ════════════
+document.getElementById('add-bar-btn').addEventListener('click', openAdd);
+
+// ════════════ Unified Add Sheet ════════════
+let rFreq = 'daily', rWeekdays = [], rMonthday = 1;
+
+// Build monthday picker 1–31
+(function() {
+  const g = document.getElementById('r-monthday-grid');
+  g.innerHTML = Array.from({length:31},(_,i)=>i+1).map(d =>
+    `<button class="md-btn${d===1?' selected':''}" data-d="${d}">${d}</button>`
+  ).join('');
+  g.querySelectorAll('.md-btn').forEach(b => b.addEventListener('click', () => {
+    rMonthday = parseInt(b.dataset.d);
+    g.querySelectorAll('.md-btn').forEach(x=>x.classList.remove('selected'));
+    b.classList.add('selected');
+  }));
+})();
+
 function openAdd() {
   addType = 'expense'; selectedCat = null;
   document.getElementById('amount-input').value = '';
   document.getElementById('note-input').value   = '';
   document.getElementById('date-input').value   = new Date().toISOString().split('T')[0];
-  document.querySelectorAll('.type-btn').forEach(b => b.classList.toggle('active', b.dataset.type===addType));
+  // reset recur
+  document.getElementById('recur-check').checked = false;
+  document.getElementById('recur-panel').classList.remove('open');
+  document.querySelector('.recur-toggle-label').classList.remove('active');
+  rFreq = 'daily'; rWeekdays = []; rMonthday = 1;
+  document.querySelectorAll('.freq-btn').forEach(b => b.classList.toggle('selected', b.dataset.freq==='daily'));
+  document.querySelectorAll('.wd-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.md-btn').forEach((b,i) => b.classList.toggle('selected', i===0));
+  document.getElementById('r-start').value = new Date().toISOString().split('T')[0];
+  document.getElementById('r-end').value   = '';
+  updateFreqSections();
+  // type buttons
+  document.querySelectorAll('.type-btn[data-type]').forEach(b =>
+    b.classList.toggle('active', b.dataset.type === 'expense'));
   renderCatGrid();
   document.getElementById('add-overlay').classList.add('open');
   setTimeout(() => document.getElementById('amount-input').focus(), 320);
 }
 function closeAdd() { document.getElementById('add-overlay').classList.remove('open'); }
 
-function renderCatGrid() {
-  const grid = document.getElementById('cat-grid');
-  grid.innerHTML = CATEGORIES[addType].map(c => `
-    <button class="cat-btn${selectedCat===c.id?' selected':''}" data-id="${c.id}">
-      <span class="icon">${c.icon}</span>
-      <span class="name">${c.name}</span>
-    </button>`).join('');
-  grid.querySelectorAll('.cat-btn').forEach(btn =>
-    btn.addEventListener('click', () => { selectedCat = btn.dataset.id; renderCatGrid(); })
-  );
+function updateFreqSections() {
+  document.getElementById('r-weekday-section').classList.toggle('section-collapsed',
+    rFreq !== 'weekly');
+  document.getElementById('r-monthday-section').classList.toggle('section-collapsed',
+    rFreq !== 'monthly');
 }
 
-document.getElementById('nav-add-btn').addEventListener('click', openAdd);
-document.getElementById('add-overlay').addEventListener('click', e => { if (e.target===e.currentTarget) closeAdd(); });
+function renderCatGrid() {
+  const grid = document.getElementById('cat-grid');
+  const cats = getAllCats(addType);
+  grid.innerHTML = cats.map(c => `
+    <button class="cat-btn${selectedCat===c.id?' selected':''}" data-id="${c.id}">
+      <span class="icon">${makeSvg(c.svgId||'other_e')}</span>
+      <span class="name">${c.name}</span>
+    </button>`).join('') +
+    `<button class="cat-btn cat-add-btn" id="cat-add-btn">
+      <span class="icon" style="color:var(--text-muted)">
+        <svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </span>
+      <span class="name" style="color:var(--text-muted)">新增</span>
+    </button>`;
+  grid.querySelectorAll('.cat-btn:not(.cat-add-btn)').forEach(btn =>
+    btn.addEventListener('click', () => { selectedCat = btn.dataset.id; renderCatGrid(); })
+  );
+  const addBtn = document.getElementById('cat-add-btn');
+  if (addBtn) addBtn.addEventListener('click', () => openCustomCat(addType));
+}
 
-document.querySelectorAll('.type-btn').forEach(btn =>
+function openCustomCat(type) {
+  const name = prompt('新類別名稱（最多5字）：');
+  if (!name || !name.trim()) return;
+  const trimmed = name.trim().slice(0, 5);
+  const id = 'custom_' + Date.now();
+  customCats[type] = customCats[type] || [];
+  customCats[type].push({ id, name: trimmed, svgId: type==='income'?'other_i':'other_e' });
+  saveCustomCats(customCats);
+  selectedCat = id;
+  renderCatGrid();
+}
+
+document.getElementById('add-overlay').addEventListener('click', e => {
+  if (e.target===e.currentTarget) closeAdd();
+});
+
+// type toggle
+document.querySelectorAll('.type-btn[data-type]').forEach(btn =>
   btn.addEventListener('click', () => {
     addType = btn.dataset.type; selectedCat = null;
-    document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.type-btn[data-type]').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     renderCatGrid();
   })
 );
 
+// recur toggle switch
+document.getElementById('recur-check').addEventListener('change', function() {
+  document.getElementById('recur-panel').classList.toggle('open', this.checked);
+  document.querySelector('.recur-toggle-label').classList.toggle('active', this.checked);
+});
+
+// freq buttons
+document.querySelectorAll('.freq-btn').forEach(btn =>
+  btn.addEventListener('click', () => {
+    rFreq = btn.dataset.freq; rWeekdays = [];
+    document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.querySelectorAll('.wd-btn').forEach(b => b.classList.remove('selected'));
+    updateFreqSections();
+  })
+);
+document.querySelectorAll('.wd-btn').forEach(btn =>
+  btn.addEventListener('click', () => {
+    const wd = parseInt(btn.dataset.wd);
+    if (rWeekdays.includes(wd)) rWeekdays = rWeekdays.filter(w=>w!==wd);
+    else rWeekdays.push(wd);
+    btn.classList.toggle('selected', rWeekdays.includes(wd));
+  })
+);
+
+// submit
 document.getElementById('submit-btn').addEventListener('click', () => {
-  const amount = parseFloat(document.getElementById('amount-input').value);
-  const date   = document.getElementById('date-input').value;
-  const note   = document.getElementById('note-input').value.trim();
+  const amount   = parseFloat(document.getElementById('amount-input').value);
+  const date     = document.getElementById('date-input').value;
+  const note     = document.getElementById('note-input').value.trim();
+  const isRecur  = document.getElementById('recur-check').checked;
+
   if (!amount || amount <= 0) { document.getElementById('amount-input').focus(); return; }
   if (!selectedCat) {
     document.getElementById('cat-grid').style.outline = '2px solid var(--accent)';
     setTimeout(() => document.getElementById('cat-grid').style.outline='', 600); return;
   }
   if (!date) return;
-  data.push({ id: Date.now().toString(), type: addType, amount, cat: selectedCat, date, note });
-  saveData(data);
+
+  if (isRecur) {
+    // validate weekdays if needed
+    if (rFreq === 'weekly' && rWeekdays.length === 0) {
+      document.getElementById('r-weekday-section').style.outline = '2px solid var(--accent)';
+      setTimeout(() => document.getElementById('r-weekday-section').style.outline='', 600); return;
+    }
+    const start = document.getElementById('r-start').value || date;
+    const end   = document.getElementById('r-end').value   || null;
+    recurs.push({
+      id: Date.now().toString(),
+      type: addType, cat: selectedCat, amount,
+      freq: rFreq, weekdays: rWeekdays.slice(), monthday: rMonthday,
+      start, end, note
+    });
+    saveRecur(recurs);
+  } else {
+    data.push({ id: Date.now().toString(), type: addType, amount, cat: selectedCat, date, note });
+    saveData(data);
+  }
   closeAdd();
   renderHome();
   if (document.getElementById('view-stats').classList.contains('active')) renderStats();
 });
+
+// ════════════ Confirm pending recurring item ════════════
+function confirmRecurring(recurId, date) {
+  const r = recurs.find(r=>r.id===recurId); if (!r) return;
+  const cat = getCat(r.type, r.cat);
+  const sign = r.type==='income' ? '+' : '−';
+  if (!confirm(`確認記帳？\n${cat.icon} ${cat.name}  ${sign}${fmt(r.amount)}\n${formatDate(date)}`)) return;
+  data.push({ id: Date.now().toString(), type: r.type, amount: r.amount,
+              cat: r.cat, date, note: r.note, recurId: r.id });
+  saveData(data);
+  renderHome();
+}
 
 // ════════════ Detail Sheet ════════════
 function openDetail(id) {
@@ -1182,8 +1858,8 @@ function openDetail(id) {
   detailId = id;
   const cat  = getCat(tx.type, tx.cat);
   const sign = tx.type==='income' ? '+' : '−';
-  document.getElementById('detail-icon').textContent    = cat.icon;
-  document.getElementById('detail-icon').style.background = cat.color + '18';
+  document.getElementById('detail-icon').innerHTML = makeSvg(cat.svgId||'other_e', 28);
+  document.getElementById('detail-icon').style.background = 'color-mix(in srgb, var(--accent) 12%, transparent)';
   document.getElementById('detail-cat').textContent    = cat.name;
   document.getElementById('detail-amount').textContent = sign + fmt(tx.amount);
   document.getElementById('detail-amount').style.color = tx.type==='income' ? 'var(--income)' : 'var(--expense)';
@@ -1203,6 +1879,38 @@ document.getElementById('delete-btn').addEventListener('click', () => {
   if (document.getElementById('view-stats').classList.contains('active')) renderStats();
 });
 
+// ════════════ Recurring management (in settings) ════════════
+function renderRecurManage() {
+  const list  = document.getElementById('recur-manage-list');
+  const empty = document.getElementById('recur-empty');
+  if (!recurs.length) { list.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  list.innerHTML = `<div class="recur-manage-card">` +
+    recurs.map(r => {
+      const cat = getCat(r.type, r.cat);
+      const sign= r.type==='income' ? '+' : '−';
+      const range= r.start ? ` ${r.start}${r.end?' ~ '+r.end:''}` : '';
+      return `<div class="recur-manage-row" data-rid="${r.id}">
+        <span class="recur-manage-icon">${makeSvg(cat.svgId||'other_e',16)}</span>
+        <div class="recur-manage-info">
+          <div class="recur-manage-name">${cat.name} <span style="font-family:'DM Mono',monospace;font-size:.78rem">${sign}${fmt(r.amount)}</span></div>
+          <div class="recur-manage-desc">${freqLabel(r)}${range}${r.note?' · '+r.note:''}</div>
+        </div>
+        <button class="recur-manage-del" data-rid="${r.id}">✕</button>
+      </div>`;
+    }).join('') + `</div>`;
+  list.querySelectorAll('.recur-manage-del').forEach(btn =>
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (!confirm('刪除此固定收支規則？')) return;
+      recurs = recurs.filter(r=>r.id!==btn.dataset.rid);
+      saveRecur(recurs);
+      renderRecurManage();
+      renderHome();
+    })
+  );
+}
+
 // ════════════ Navigation ════════════
 document.querySelectorAll('.nav-btn[data-view]').forEach(btn =>
   btn.addEventListener('click', () => {
@@ -1212,6 +1920,7 @@ document.querySelectorAll('.nav-btn[data-view]').forEach(btn =>
     document.getElementById('view-' + target).classList.add('active');
     btn.classList.add('active');
     if (target === 'stats') renderStats();
+    if (target === 'settings') renderRecurManage();
   })
 );
 
