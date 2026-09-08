@@ -1569,9 +1569,6 @@ function makeIcon(iconId, size=20) {
 }
 
 const CUSTOM_CAT_KEY = 'budget_app_custom_cats';
-function loadCustomCats() { try { return JSON.parse(localStorage.getItem(CUSTOM_CAT_KEY)) || {expense:[],income:[]}; } catch { return {expense:[],income:[]}; } }
-function saveCustomCats(c) { localStorage.setItem(CUSTOM_CAT_KEY, JSON.stringify(c)); }
-let customCats = loadCustomCats();
 
 const BASE_CATEGORIES = {
   expense: [
@@ -1606,21 +1603,71 @@ const CATEGORIES = BASE_CATEGORIES;
 // Compatibility: getCat works for both base and custom
 // CATEGORIES already declared = BASE_CATEGORIES; // keep for stats compat
 
-function loadData()    { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; } }
-function saveData(d)   { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
-function loadRecur()   { try { return JSON.parse(localStorage.getItem(RECUR_KEY)) || []; } catch { return []; } }
-function saveRecur(r)  { localStorage.setItem(RECUR_KEY, JSON.stringify(r)); }
-function loadBudget()  { return parseFloat(localStorage.getItem(BUDGET_KEY)) || 0; }
-function saveBudget(v) { localStorage.setItem(BUDGET_KEY, v); }
+// ── IndexedDB wrapper ──────────────────────────────────────────────────────
+const DB_NAME    = 'budgetApp';
+const DB_VERSION = 1;
+const STORES     = ['kv'];  // single key-value store
 
-let data   = loadData();
-let recurs = loadRecur();   // [{id,type,cat,amount,freq,weekdays,monthday,start,end,note}]
-let budget = loadBudget();
+let _db = null;
+
+function openDB() {
+  if (_db) return Promise.resolve(_db);
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, DB_VERSION);
+    req.onupgradeneeded = e => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains('kv')) db.createObjectStore('kv');
+    };
+    req.onsuccess  = e => { _db = e.target.result; resolve(_db); };
+    req.onerror    = e => reject(e.target.error);
+  });
+}
+
+function idbGet(key) {
+  return openDB().then(db => new Promise((resolve, reject) => {
+    const tx  = db.transaction('kv', 'readonly');
+    const req = tx.objectStore('kv').get(key);
+    req.onsuccess = e => resolve(e.target.result);
+    req.onerror   = e => reject(e.target.error);
+  }));
+}
+
+function idbSet(key, value) {
+  return openDB().then(db => new Promise((resolve, reject) => {
+    const tx  = db.transaction('kv', 'readwrite');
+    const req = tx.objectStore('kv').put(value, key);
+    req.onsuccess = () => resolve();
+    req.onerror   = e => reject(e.target.error);
+  }));
+}
+
+// ── Data accessors (async reads, sync cached writes) ────────────────────────
+let data       = [];
+let recurs     = [];
+let budget     = 0;
+let customCats = { expense: [], income: [] };
+
+function saveData(d)   { data = d;   idbSet(STORAGE_KEY,  d); }
+function saveRecur(r)  { recurs = r; idbSet(RECUR_KEY,    r); }
+function saveBudget(v) { budget = v; idbSet(BUDGET_KEY,   String(v)); }
+function saveCustomCats(c) { customCats = c; idbSet(CUSTOM_CAT_KEY, c); }
+
+// loadAllData: call once on startup, resolves when all data is in memory
+function loadAllData() {
+  return Promise.all([
+    idbGet(STORAGE_KEY).then(v    => { data       = v  || []; }),
+    idbGet(RECUR_KEY).then(v      => { recurs     = v  || []; }),
+    idbGet(BUDGET_KEY).then(v     => { budget     = parseFloat(v) || 0; }),
+    idbGet(CUSTOM_CAT_KEY).then(v => { customCats = v  || { expense:[], income:[] }; }),
+    idbGet(THEME_KEY).then(v      => { if (v) currentTheme = v; }),
+    idbGet(DARK_KEY).then(v       => { if (v !== undefined) isDark = (v === '1'); }),
+  ]);
+}
 
 // ════════════ Theme ════════════
 const THEMES = ['spring','summer','autumn','winter'];
-let currentTheme = localStorage.getItem(THEME_KEY) || 'spring';
-let isDark = localStorage.getItem(DARK_KEY) === '1';
+let currentTheme = 'spring';
+let isDark = false;
 
 function applyTheme() {
   const t = isDark ? currentTheme + '-dark' : currentTheme;
@@ -1634,10 +1681,11 @@ function applyTheme() {
     b.style.display = isMyGroup ? '' : 'none';
     b.classList.toggle('active', isMyGroup && b.dataset.theme === currentTheme);
   });
-  localStorage.setItem(THEME_KEY, currentTheme);
-  localStorage.setItem(DARK_KEY, isDark ? '1' : '0');
+  idbSet(THEME_KEY, currentTheme);
+  idbSet(DARK_KEY, isDark ? '1' : '0');
 }
-applyTheme();
+// applyTheme() is called after loadAllData in boot sequence
+// (defined here so event listeners below can reference it)
 
 document.querySelectorAll('.theme-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -2230,7 +2278,7 @@ document.getElementById('stats-prev-month').addEventListener('click', () => { st
 document.getElementById('stats-next-month').addEventListener('click', () => { statsMonth = nextMonth(statsMonth); renderStats(); });
 
 // ════════════ Settings ════════════
-document.getElementById('budget-input').value = budget || '';
+
 document.getElementById('save-budget-btn').addEventListener('click', () => {
   budget = parseFloat(document.getElementById('budget-input').value) || 0;
   saveBudget(budget); renderHome();
@@ -2409,7 +2457,15 @@ document.getElementById('calc-confirm').addEventListener('click', () => {
 // ════════════ PWA ════════════
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 
-renderHome();
+// ── Boot: load all data from IndexedDB, then render ─────────────────────────
+loadAllData().then(() => {
+  applyTheme();  // apply saved theme before first render
+  document.getElementById('budget-input').value = budget || '';
+  renderHome();
+}).catch(err => {
+  console.error('IndexedDB load failed, falling back to empty state', err);
+  renderHome();
+});
 
 </script>
 </body>
