@@ -444,7 +444,7 @@ body {
   cursor: pointer; z-index: 16;
   box-shadow: 0 3px 16px color-mix(in srgb, var(--accent) 42%, transparent),
               0 1px 4px rgba(0,0,0,.1);
-  transition: transform .1s, opacity .1s;
+  transition: background .3s, transform .1s, opacity .1s;
 }
 .add-bar:active { transform: translateX(-50%) scale(.97); opacity: .88; }
 .add-bar-plus {
@@ -452,6 +452,15 @@ body {
   font-weight: 300; font-family: 'Inter', sans-serif;
   user-select: none; pointer-events: none;
 }
+/* 夜間模式：＋ 用深底 × 明亮跳色，確保對比 */
+[data-theme="spring-dark"] .add-bar { background: #d4899a; }
+[data-theme="spring-dark"] .add-bar-plus { color: #0e0f18; }
+[data-theme="summer-dark"] .add-bar { background: #e8602a; }
+[data-theme="summer-dark"] .add-bar-plus { color: #080c18; }
+[data-theme="autumn-dark"] .add-bar { background: #e8c870; }
+[data-theme="autumn-dark"] .add-bar-plus { color: #0a0804; }
+[data-theme="winter-dark"] .add-bar { background: #c0d8f8; }
+[data-theme="winter-dark"] .add-bar-plus { color: #060810; }
 
 /* ══ STATS ══ */
 .stats-content {
@@ -954,11 +963,6 @@ body {
               <span class="tc-season" style="color:#2c2420">初春</span>
               <span class="tc-mode" style="color:#9a8880">薄桜 × 若草</span>
             </div>
-            <div class="tc-band">
-              <span style="background:#b5787a"></span>
-              <span style="background:#5a8a6a"></span>
-              <span style="background:#b5787a"></span>
-            </div>
             <div class="tc-body" style="background:#fdfaf6">
               <span class="tc-num" style="color:#b5787a">NT$1,200</span>
               <div class="tc-dots">
@@ -975,11 +979,6 @@ body {
             <div class="tc-head" style="background:#e8f2fa">
               <span class="tc-season" style="color:#101e30">琉璃</span>
               <span class="tc-mode" style="color:#5870a0">白藍 × 瑠璃</span>
-            </div>
-            <div class="tc-band">
-              <span style="background:#2a6898"></span>
-              <span style="background:#3a8870"></span>
-              <span style="background:#8a4060"></span>
             </div>
             <div class="tc-body" style="background:#f4faff">
               <span class="tc-num" style="color:#2a6898">NT$1,200</span>
@@ -998,11 +997,6 @@ body {
               <span class="tc-season" style="color:#1e1608">山風</span>
               <span class="tc-mode" style="color:#7a6848">錆色 × 煤竹</span>
             </div>
-            <div class="tc-band">
-              <span style="background:#8b4513"></span>
-              <span style="background:#4a7a48"></span>
-              <span style="background:#8b4513"></span>
-            </div>
             <div class="tc-body" style="background:#f2ebe0">
               <span class="tc-num" style="color:#8b4513">NT$1,200</span>
               <div class="tc-dots">
@@ -1019,11 +1013,6 @@ body {
             <div class="tc-head" style="background:#e4eaf4">
               <span class="tc-season" style="color:#101828">師走</span>
               <span class="tc-mode" style="color:#607090">紺色 × 氷藍</span>
-            </div>
-            <div class="tc-band">
-              <span style="background:#304870"></span>
-              <span style="background:#3a7870"></span>
-              <span style="background:#784860"></span>
             </div>
             <div class="tc-body" style="background:#f0f4fc">
               <span class="tc-num" style="color:#304870">NT$1,200</span>
@@ -1043,11 +1032,6 @@ body {
               <span class="tc-season" style="color:#f0e8f0">夜櫻</span>
               <span class="tc-mode" style="color:#8878a0">夜桜 × 藤紫</span>
             </div>
-            <div class="tc-band">
-              <span style="background:#d4899a"></span>
-              <span style="background:#7ab88a"></span>
-              <span style="background:#d4899a"></span>
-            </div>
             <div class="tc-body" style="background:#161824">
               <span class="tc-num" style="color:#d4899a">NT$1,200</span>
               <div class="tc-dots">
@@ -1062,13 +1046,8 @@ body {
         <button class="theme-btn" data-theme="summer" data-group="dark">
           <div class="tc" style="background:#0e1428">
             <div class="tc-head" style="background:#080c18">
-              <span class="tc-season" style="color:#f0e8c8">夏祭</span>
-              <span class="tc-mode" style="color:#8898c8">花火 × 玉色</span>
-            </div>
-            <div class="tc-band">
-              <span style="background:#e8602a"></span>
-              <span style="background:#48c8a8"></span>
-              <span style="background:#e8602a"></span>
+              <span class="tc-season" style="color:#f0e8c8">金魚</span>
+              <span class="tc-mode" style="color:#8898c8">金魚 × 花火</span>
             </div>
             <div class="tc-body" style="background:#0e1428">
               <span class="tc-num" style="color:#e8602a">NT$1,200</span>
@@ -1087,11 +1066,6 @@ body {
               <span class="tc-season" style="color:#f8f0d8">月見</span>
               <span class="tc-mode" style="color:#a09060">月金 × 萌黄</span>
             </div>
-            <div class="tc-band">
-              <span style="background:#e8c870"></span>
-              <span style="background:#80b868"></span>
-              <span style="background:#c87040"></span>
-            </div>
             <div class="tc-body" style="background:#120e08">
               <span class="tc-num" style="color:#e8c870">NT$1,200</span>
               <div class="tc-dots">
@@ -1106,13 +1080,8 @@ body {
         <button class="theme-btn" data-theme="winter" data-group="dark">
           <div class="tc" style="background:#0c1020">
             <div class="tc-head" style="background:#060810">
-              <span class="tc-season" style="color:#e8f0ff">深雪</span>
-              <span class="tc-mode" style="color:#6070a0">氷白 × 紫苑</span>
-            </div>
-            <div class="tc-band">
-              <span style="background:#c0d8f8"></span>
-              <span style="background:#60c8b8"></span>
-              <span style="background:#b068a0"></span>
+              <span class="tc-season" style="color:#e8f0ff">霜伴</span>
+              <span class="tc-mode" style="color:#6070a0">霜伴 × 氷白</span>
             </div>
             <div class="tc-body" style="background:#0c1020">
               <span class="tc-num" style="color:#c0d8f8">NT$1,200</span>
@@ -1122,10 +1091,6 @@ body {
                 <span style="background:#b068a0"></span>
                 <span style="background:#6070a0"></span>
               </div>
-            </div>
-          </div>
-        </button>
-      </div>
             </div>
           </div>
         </button>
@@ -1181,7 +1146,7 @@ body {
       <div class="settings-card">
         <div class="settings-row">
           <span class="settings-row-label">版本</span>
-          <span class="settings-row-value num">1.1.0</span>
+          <span class="settings-row-value num">1.2.0</span>
         </div>
         <div class="settings-row">
           <span class="settings-row-label">資料儲存</span>
@@ -1190,7 +1155,7 @@ body {
       </div>
     </div>
   </div>
-</div>
+  </div>
 
 <!-- ═══════════ ADD BAR (floating pill above nav) ═══════════ -->
 <button class="add-bar" id="add-bar-btn">
@@ -1919,6 +1884,8 @@ document.querySelectorAll('.nav-btn[data-view]').forEach(btn =>
     document.querySelectorAll('.nav-btn[data-view]').forEach(b => b.classList.remove('active'));
     document.getElementById('view-' + target).classList.add('active');
     btn.classList.add('active');
+    // ＋ bar only on home
+    document.getElementById('add-bar-btn').style.display = target === 'home' ? '' : 'none';
     if (target === 'stats') renderStats();
     if (target === 'settings') renderRecurManage();
   })
