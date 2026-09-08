@@ -361,7 +361,7 @@ body {
 }
 .tx-list {
   flex: 1; padding: 0 12px;
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 118px); /* nav + add-bar */
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 124px);
   overflow-y: auto;
 }
 .tx-group { margin-bottom: 22px; }
@@ -1039,6 +1039,65 @@ body {
 }
 .calc-confirm:active { opacity: .8; }
 
+
+/* ══ MONTH CALENDAR ══ */
+.cal-wrap {
+  margin: 0 16px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 10px 10px;
+  user-select: none;
+}
+.cal-weekdays {
+  display: grid; grid-template-columns: repeat(7,1fr);
+  margin-bottom: 4px;
+}
+.cal-wd {
+  font-family: 'Inter', sans-serif;
+  font-size: .58rem; font-weight: 500;
+  color: var(--text-muted); letter-spacing: .04em;
+  text-align: center; padding: 2px 0;
+}
+.cal-wd:first-child { color: var(--expense); opacity: .7; }
+.cal-wd:last-child  { color: var(--accent);  opacity: .7; }
+.cal-grid {
+  display: grid; grid-template-columns: repeat(7,1fr); gap: 2px;
+}
+.cal-cell {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 3px; padding: 4px 0; border-radius: 8px;
+  cursor: default; min-height: 36px;
+  transition: background .1s;
+  position: relative;
+}
+.cal-cell.has-record { cursor: pointer; }
+.cal-cell.has-record:active { background: var(--surface2); }
+.cal-num {
+  font-family: 'DM Mono', monospace;
+  font-size: .72rem; line-height: 1; color: var(--text-muted);
+}
+.cal-cell.today .cal-num {
+  color: var(--accent); font-weight: 600;
+}
+.cal-cell.today::before {
+  content: '';
+  position: absolute; top: 3px;
+  width: 26px; height: 26px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%; opacity: .5;
+}
+.cal-cell.other-month .cal-num { opacity: .25; }
+.cal-dots {
+  display: flex; gap: 2px; align-items: center; min-height: 5px;
+}
+.cal-dot {
+  width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0;
+}
+.cal-dot.expense { background: var(--expense); opacity: .75; }
+.cal-dot.income  { background: var(--income);  opacity: .75; }
+
 ::-webkit-scrollbar { width: 0; }
   </style>
 </head>
@@ -1070,6 +1129,11 @@ body {
         <div class="s-amount expense num" id="total-expense">0</div>
       </div>
     </div>
+  </div>
+
+  <div id="cal-wrap" class="cal-wrap">
+    <div class="cal-weekdays" id="cal-weekdays"></div>
+    <div class="cal-grid" id="cal-grid"></div>
   </div>
 
   <div class="budget-section" id="budget-section" style="display:none">
@@ -1758,6 +1822,83 @@ function freqLabel(r) {
   return '';
 }
 
+// ════════════ Render Calendar ════════════
+function renderCalendar(year, month, txs) {
+  const weekdays = ['日','一','二','三','四','五','六'];
+  const wdEl = document.getElementById('cal-weekdays');
+  wdEl.innerHTML = weekdays.map(d => `<div class="cal-wd">${d}</div>`).join('');
+
+  // Build date → {hasIncome, hasExpense} map
+  const dayMap = {};
+  txs.forEach(t => {
+    const d = t.date;
+    if (!dayMap[d]) dayMap[d] = { income: false, expense: false };
+    dayMap[d][t.type] = true;
+  });
+  // Also mark pending recurring dates
+  recurs.forEach(r => {
+    recurDatesInMonth(r, year, month).forEach(date => {
+      if (!dayMap[date]) dayMap[date] = { income: false, expense: false, pending: true };
+    });
+  });
+
+  const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const today = new Date();
+  const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+
+  const cells = [];
+
+  // Leading empty cells (prev month)
+  for (let i = 0; i < firstDay; i++) {
+    const prevDate = new Date(year, month, 1 - (firstDay - i));
+    cells.push({ day: prevDate.getDate(), otherMonth: true, dateStr: null });
+  }
+  // Current month days
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = isCurrentMonth && today.getDate() === d;
+    const rec = dayMap[dateStr];
+    cells.push({ day: d, otherMonth: false, dateStr, isToday, rec });
+  }
+  // Trailing empty cells
+  const remaining = (7 - cells.length % 7) % 7;
+  for (let i = 1; i <= remaining; i++) {
+    cells.push({ day: i, otherMonth: true, dateStr: null });
+  }
+
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = cells.map(c => {
+    const cls = [
+      'cal-cell',
+      c.otherMonth ? 'other-month' : '',
+      c.isToday    ? 'today'       : '',
+      c.rec        ? 'has-record'  : '',
+    ].filter(Boolean).join(' ');
+
+    let dots = '';
+    if (c.rec) {
+      if (c.rec.expense) dots += `<span class="cal-dot expense"></span>`;
+      if (c.rec.income)  dots += `<span class="cal-dot income"></span>`;
+      if (c.rec.pending && !c.rec.expense && !c.rec.income)
+        dots += `<span class="cal-dot" style="background:var(--text-muted);opacity:.4"></span>`;
+    }
+
+    return `<div class="${cls}"${c.dateStr ? ` data-date="${c.dateStr}"` : ''}>
+      <span class="cal-num">${c.day}</span>
+      <div class="cal-dots">${dots}</div>
+    </div>`;
+  }).join('');
+
+  // Click to scroll
+  grid.querySelectorAll('.cal-cell.has-record').forEach(cell => {
+    cell.addEventListener('click', () => {
+      const target = document.getElementById('day-' + cell.dataset.date);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
 // ════════════ Render Home ════════════
 function renderHome() {
   const {year, month} = viewMonth;
@@ -1777,6 +1918,9 @@ function renderHome() {
   });
 
   // Totals: confirmed txs only (pending recurring = display only, not calculated)
+  // Render calendar
+  renderCalendar(year, month, txs);
+
   const income  = txs.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount, 0);
   const expense = txs.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount, 0);
   const balance = income - expense;
@@ -1869,7 +2013,7 @@ function renderHome() {
       }
     }).join('');
 
-    return `<div class="tx-group">
+    return `<div class="tx-group" id="day-${date}">
       <div class="tx-date-row">
         <span class="tx-date-text">${formatDate(date)}</span>
         <span class="tx-date-line"></span>
