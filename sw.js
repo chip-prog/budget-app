@@ -1,8 +1,11 @@
-const CACHE = 'budget-app-v5';
-const ASSETS = ['./index.html', './manifest.json'];
+// 這個檔案以後不需要再改了
+// index.html 永遠走網路，不快取，更新即時生效
+
+const CACHE = 'budget-app-v7';
+const STATIC = ['./manifest.json'];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(STATIC)));
   self.skipWaiting();
 });
 
@@ -16,11 +19,16 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  // Network first for HTML — always get latest version
-  if (e.request.destination === 'document') {
+  const url = new URL(e.request.url);
+
+  // index.html：永遠去網路抓，離線才用快取
+  if (e.request.destination === 'document' ||
+      url.pathname.endsWith('index.html') ||
+      url.pathname.endsWith('/')) {
     e.respondWith(
-      fetch(e.request)
+      fetch(e.request, { cache: 'no-store' })
         .then(res => {
+          // 順便更新快取，供離線使用
           const clone = res.clone();
           caches.open(CACHE).then(c => c.put(e.request, clone));
           return res;
@@ -29,7 +37,8 @@ self.addEventListener('fetch', e => {
     );
     return;
   }
-  // Cache first for other assets
+
+  // 其他資源：快取優先
   e.respondWith(
     caches.match(e.request).then(cached => cached || fetch(e.request))
   );
